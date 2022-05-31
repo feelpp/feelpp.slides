@@ -1,0 +1,32 @@
+name: CI
+
+on: [push]
+
+jobs:
+
+  build_docs:
+    runs-on: ubuntu-latest
+    name: Build, Install, Package slides
+    if: "!contains(github.event.head_commit.message, 'docs skip')"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install credentials
+      run: echo https://$GITHUB_OAUTH:@github.com > $HOME/.git-credentials
+      env:
+        GITHUB_OAUTH: ${{ secrets.DOCS_GITHUB_KEY }}
+    - name: Build
+      run: |
+        sudo apt install asciidoctor ruby2.7
+        bundle install
+        ./render
+        mkdir build 
+        mv *.html build
+        cp -r css build
+        cp -r reveal.js build
+        cp -r fonts images videos build
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
