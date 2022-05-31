@@ -17,13 +17,14 @@ jobs:
     - name: Build
       run: |
         sudo apt install asciidoctor ruby2.7
-        bundle install
+        bundle2.7 install
         ./render
         mkdir build 
         mv *.html build
         cp -r css build
-        cp -r reveal.js build
         cp -r fonts images videos build
+        cp -r reveal.js build
+        git clone -b 3.9.2 -depth 1 https://github.com/hakimel/reveal.js.git build/
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
