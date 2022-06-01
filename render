@@ -25,5 +25,5 @@ base=`basename $SRCFILE .adoc`
 
 done
 
-if [! -d build ] then mkdir build; fi
+if [! -d build ]; then mkdir build; fi
 cp *.html build
