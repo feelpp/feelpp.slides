@@ -37,3 +37,9 @@ image:Figures/team/samake-icon.png[height=150]
 .Céline
 image:Figures/team/zohra-icon.png[height=150]
 --
+[.column]
+--
+.Thomas
+image:Figures/team/saigre-icon.png[height=150]
+
+--
