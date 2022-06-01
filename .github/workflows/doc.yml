@@ -7,7 +7,7 @@ jobs:
   build_docs:
     runs-on: ubuntu-latest
     name: Build, Install, Package slides
-    if: "!contains(github.event.head_commit.message, 'docs skip')"
+#    if: "!contains(github.event.head_commit.message, 'docs skip')"
     steps:
     - uses: actions/checkout@v2
     - name: Install credentials
@@ -22,7 +22,7 @@ jobs:
         ./render
         mv *.html build
         cp -r css fonts images videos build
-        git clone -b 3.9.2 -depth 1 https://github.com/hakimel/reveal.js.git build/
+        git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git build/
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
