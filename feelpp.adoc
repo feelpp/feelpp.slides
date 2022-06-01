@@ -138,29 +138,7 @@ image:Figures/feelpp/400x200/peltiermodule-electricpotential-400x200.png[image]
 * Non linear material properties
 --
 
-[.columns]
-== Toolboxes :: Coefficient Form PDEs 
 
-Many (mono/multi)physics problem can be written into a system of generic PDE, parametrized by some coefficients :
-
-[.column]
---
-[latexmath]
-++++
-\[d \frac{\partial u}{\partial t} + \nabla \cdot \left( -c \nabla u - \alpha u + \gamma \right) + \beta \cdot \nabla u + a u = f \quad \text{ in } \Omega\]
-++++
---
-[.column]
---
-* latexmath:[$d$] : damping or mass coefficient
-* latexmath:[$c$] : diffusion coefficient
-* latexmath:[$\alpha$] : conservative flux convection coefficient
-* latexmath:[$\gamma$] : conservative flux source term
-
-* latexmath:[$\beta$] : convection coefficient
-* latexmath:[$a$] : absorption or reaction coefficient
-* latexmath:[$f$] : source term
---
 
 == Toolboxes :: PostProcessing
 

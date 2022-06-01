@@ -43,3 +43,8 @@
 include::feelpp-team.adoc[]
 
 include::feelpp.adoc[]
+
+include::feelpp-cfpdes.adoc[]
+
+//include::feelpp-hdg-hho.adoc[]
+

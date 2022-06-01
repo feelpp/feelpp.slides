@@ -3,13 +3,14 @@
 # Inital Setup see:
 #    https://asciidoctor.org/docs/asciidoctor-revealjs/
 
+BUNDLE=${1:-bundle}
 #SRCFILES=(ch1-poisson.adoc ch2-prog.adoc ch3-diffusion.adoc ch4-elasticite.adoc ch5-stokes.adoc index.adoc)
 #for SRCFILE in "${SRCFILES[@]}"; do
 for SRCFILE in *.adoc; do
 
 echo "Rendering $SRCFILE"
 
-bundle2.7 exec asciidoctor-revealjs -r asciidoctor-diagram  -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  $SRCFILE
+$BUNDLE exec asciidoctor-revealjs -r asciidoctor-diagram  -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  $SRCFILE
 base=`basename $SRCFILE .adoc`
 #echo "Starting Webserver on :8000"
 #python -m SimpleHTTPServer >/dev/null 2>&1 & 
@@ -26,4 +27,4 @@ base=`basename $SRCFILE .adoc`
 done
 
 if test ! -d build; then mkdir build; fi
-cp *.html build
+mv *.html build

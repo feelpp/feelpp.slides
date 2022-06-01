@@ -19,7 +19,7 @@ jobs:
         sudo apt install asciidoctor ruby2.7
         bundle2.7 install
         mkdir build 
-        ./render
+        ./render bundle2.7
     - name: Install
       run: |
         mv *.html build
