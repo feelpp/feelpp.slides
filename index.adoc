@@ -15,7 +15,7 @@
 // we want local served fonts. Therefore patched sky.css
 //:revealjs_theme: sky
 :revealjs_customtheme: css/sky.css
-:revealjs_autoSlide: 5000
+//:revealjs_autoSlide: 5000
 :revealjs_history: true
 :revealjs_fragmentInURL: true
 :revealjs_viewDistance: 5
@@ -35,7 +35,7 @@
 :imagesdir: images
 :source-highlighter: highlightjs
 :highlightjs-theme: css/atom-one-light.css
-:highlightjs-languages: cpp,json
+//:highlightjs-languages: cpp, json
 // we want local served font-awesome fonts
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
@@ -46,5 +46,5 @@ include::feelpp.adoc[]
 
 include::feelpp-cfpdes.adoc[]
 
-//include::feelpp-hdg-hho.adoc[]
+include::feelpp-hdg.adoc[]
 

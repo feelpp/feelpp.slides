@@ -1,0 +1,132 @@
+== Hybridized Discontinuous Galerkin
+
+[.columns]
+=== HDG Laplacian 
+
+[.column]
+--
+First, we need to create
+latexmath:[$\mathcal{F}_h^{ibc}$] and
+latexmath:[$\mathcal{F}_h\setminus\mathcal{F}_h^{ibc}$].
+
+Complement and submesh
+
+
+--
+
+[source.column.small,cpp]
+----
+// T_h
+auto mesh=loadMesh( _mesh=new Mesh<Simplex<$d$ >>);
+// filter to retrieve the complement of $\mathcal{F}_h^{ibc}$ in $\mathcal{F}_h$
+auto complement_integral_bdy = complement(faces(mesh),
+  [&mesh]( auto const& e ) {
+    if ( e.hasMarker() &&
+         e.marker().matches(mesh->markerName("Ibc*") ) )
+      return true;
+    return false;
+   });
+// $\mathcal{F}_h\setminus\mathcal{F}_h^{ibc}$
+auto face_mesh = createSubmesh( mesh, complement_integral_bdy);
+// $\mathcal{F}_h^{ibc}$
+auto ibc_mesh = createSubmesh( mesh, markedfaces(mesh,"Ibc*"));
+----
+
+[.refs.xx-small]
+--
+* Douglas N. Arnold, Franco Brezzi, Bernardo Cockburn, L. Donatella Marini:
+Unified Analysis of Discontinuous Galerkin Methods for Elliptic Problems. SIAM J. Numer. Anal. 39(5): 1749-1779 (2002)
+* *A HDG method for elliptic problems with integral boundary condition: Theory and Applications*, Silvia Bertoluzza,Giovanna Guidoboni,Romain Hild,Daniele Prada,Christophe Prud'homme,Riccardo Sacco,Lorenzo Sala,Marcela Szopos, 2021 submitted
+--
+
+[.columns]
+=== HDG Laplacian 
+
+[.column]
+--
+Then, we need to create the spaces
+latexmath:[$V_h,W_h,\tilde{M}_h$] and latexmath:[$M_h^*$]. +
+We also want to be able to have several number of integral boundary
+conditions, the number of which will only be known at execution.
+
+[latexmath]
+++++
+\[V_h\times W_h\times \tilde{M}_h\times (M_h^*)^n\]
+++++
+
+Spaces initialization and product space
+--
+
+[source.columnn.small,c++]
+----
+Vh_ptr_t Vh = Pdhv<OrderP>( mesh, true );
+Wh_ptr_t Wh = Pdh<OrderP>( mesh, true );
+Mh_ptr_t Mh = Pdh<OrderP>( face_mesh,true );
+// only one degree of freedom
+Ch_ptr_t Ch = Pch<0>(ibc_mesh, true );
+// $n$ IBC
+auto ibcSpaces = product( nb_ibc, Ch);
+auto Xh = product( Vh, Wh, Mh. ibcSpaces  );
+----
+
+[.columns]
+=== HDG laplacian 
+
+[.column]
+--
+Construction of the matrix and right hand side
+--
+[source.column.small,cpp]
+----
+auto a = blockform2( Xh )
+auto rhs = blockform1( Xh );
+
+. . .
+// Assembling the right hand side
+rhs(1_c) += integrate(_range=elements(mesh),_expr=-f*id(w));
+. . .
+// Assembling the main matrix
+a(0_c,0_c) += integrate(_range=elements(mesh),
+                        _expr=(trans(lambda*idt(u))*id(v)) );
+. . .
+//$\langle \hat{p}_h\rvert_{\tilde{M}_h}, \bv_h^K \cdot \bn_\dK\rangle$ $$
+a(0_c,2_c) += integrate(_range=internalfaces(mesh),
+         _expr=( idt(phat)*(leftface(trans(id(v))*N())+
+                rightface(trans(id(v))*N()))));
+----
+
+[.notes]
+--
+Note We can choose at the execution if we solve the problem using static
+condensation or the monolithic strategy.
+--
+
+[.columns]
+=== HDG laplacian 
+
+[.column]
+--
+Constant vs. dynamic index and resolution
+--
+
+[source.column.small,c++]
+----
+a( 3_c, 0_c, i, 0 ) +=
+   integrate( _range=markedfaces(mesh,"Ibc"),
+             _expr=(trans(idt(u))*N()) * id(nu) );
+auto U = Xh.element();
+// static condensation is done during the solve
+a.solve(_solution=U, _rhs=rhs, _name="hdg");
+// get views over each component
+auto up = U(0_c); // element of $V_h$
+auto pp = U(1_c); // element of $W_h$
+auto phat = U(2_c); // element of $M_h$
+auto ip = U(3_c,0); // element of $M^*_h$
+----
+
+[.notes]
+--
+* Access a dynamic block of the matrix by adding the relative index. +
+* create an element of the product space as usual, and access its
+component in the same way.
+--
