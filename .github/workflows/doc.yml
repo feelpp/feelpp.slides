@@ -22,7 +22,6 @@ jobs:
         ./render bundle2.7
     - name: Install
       run: |
-        mv *.html build
         cp -r css fonts images videos build
         git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git build/reveal.js
     - name: Deploy
