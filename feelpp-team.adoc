@@ -27,7 +27,7 @@ image:Figures/team/trophime-icon.png[height=150]
 image:Figures/team/zohra-icon.png[height=150]
 
 .Luca
-image:Figures/team/luca-icon.png[height=150]
+image:Figures/team/berti-icon.png[height=150]
 --
 [.column]
 --
