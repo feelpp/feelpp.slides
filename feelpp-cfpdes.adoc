@@ -123,7 +123,10 @@ json here
     0 &\text{in } \Omega\setminus\Omega_c \end{cases}
 ++++
 
-image:Figures/feelpp/feelpp-example_superconduct.png[height=200]
+// picture with plot
+// image:Figures/feelpp/feelpp-example_superconduct.png[height=200] 
+// picture without plot
+image:Figures/feelpp/feelpp-example_supra.png[height=250]
 --
 [.column.small.is-two-thirds]
 --
