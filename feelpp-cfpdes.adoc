@@ -2,30 +2,54 @@
 [.columns]
 == Generic Toolbox :: Coefficient Form PDEs 
 
+[%notitle]
+[.columns]
 ===  Coefficient Form PDEs 
 
-Many (mono/multi)physics problem can be written into a system of generic PDE, parametrized by some coefficients :
-
-[.column.x-small]
+[.column.x-small.left.decentlightbg]
 --
 Find stem:[u_i,i=1...,N]  such that
-[latexmath]
+[latexmath.xx-small]
 ++++
-d_i \frac{\partial u_i}{\partial t} + \nabla_i \cdot \left( -c \nabla u_i - \alpha u_i + \gamma_i \right) + \beta_i \cdot \nabla u_i + a u_i = f \quad \text{ in } \Omega
+\begin{aligned}
+d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alpha u_i + \gamma_i \right)& \\
++ \beta_i \cdot \nabla u_i + a u_i &= f \quad \text{ in } \Omega
+\end{aligned}
 ++++
---
-[.column]
---
-* latexmath:[$d_i$] : damping or mass coefficient
-* latexmath:[$c_i$] : diffusion coefficient
-* latexmath:[$\alpha_i$] : conservative flux convection coefficient
-* latexmath:[$\gamma_i$] : conservative flux source term
 
-* latexmath:[$\beta_i$] : convection coefficient
-* latexmath:[$a_i$] : absorption or reaction coefficient
-* latexmath:[$f_i$] : source term
+* Coefficients can depend on the unknowns stem:[u_j,j=1 \ldots N].
+* Automatic differentiation built on top of {feelpp} expression handling
+* Various schemes based on Newton or Picard 
+//* Space-time adaptation(coming soon in `develop` branch)
 
-The coefficients can depend on the unknowns stem:[u_j,j=1 \ldots N].
+video::P-jOk82f8Ps[youtube, options="autoplay,loop,modest",height=300]
+--
+[.column.small.is-two-thirds]
+--
+.Predator-Prey coupled model link:https://github.com/feelpp/feelpp/tree/develop/toolboxes/coefficientformpdes/cases/predator-prey[[Github]]
+[source,json]
+----
+"Models": {
+    "cfpdes":{ "equations":["equation1","equation2"] },
+    "equation1":{
+        "setup":{
+            "unknown":{"basis":"Pch1","name":"prey","symbol":"u"},
+            "coefficients":{
+                "c":"1", // diffusion
+                "a":"-( (1-equation1_u) - equation2_v/(equation1_u+thealpha) ):thealpha:equation1_u:equation2_v", // life and death
+                "d":"1" // time derivative
+            } } },
+    "equation2":{
+        "setup":{
+            "unknown":{ "basis":"Pch1", "name":"predator", "symbol":"v" },
+            "coefficients":{
+                "c":"thedelta:thedelta", // diffusion
+                "a":"-( (thebeta*equation1_u)/(equation1_u+thealpha) - thegamma ):thebeta:thealpha:thegamma:equation1_u", // life and death
+                "d":"1"// time derivative
+            } } } }
+    ...
+----
+
 
 --
 
