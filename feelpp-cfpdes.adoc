@@ -122,14 +122,17 @@ json here
 ++++
     j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}
 ++++
+[small]
+----
 with :
+----
 [latexmath.xx-small]
 ++++
     \sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\frac{\partial a_\theta}{\partial t}||}{e_c}\right)^{(1-n)/n} &\text{in } \Omega_c\\
     0 &\text{in } \Omega\setminus\Omega_c \end{cases}
 ++++
 
-image:Figures/feelpp/feelpp-example_superconduct.png[height=150]
+image:Figures/feelpp/feelpp-example_superconduct.png[height=250]
 --
 [.column.small.is-two-thirds]
 --
@@ -140,9 +143,8 @@ image:Figures/feelpp/feelpp-example_superconduct.png[height=150]
 "Models":{
     "cfpdes":{ "equations":"magnetic" },
     "magnetic":{
-        "common":{
-            "setup":{
-                "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
+        "common":{"setup":{
+            "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
             }},
         "models":[{
             "name":"magnetic_Conductor",
@@ -151,7 +153,8 @@ image:Figures/feelpp/feelpp-example_superconduct.png[height=150]
                     "c":"x/mu:x:mu",
                     "a":"1/mu/x:mu:x",
                     "f":"0.",
-                    "d":"materials_Conductor_sigma_mod:materials_Conductor_sigma_mod"}}},
+                    "d":"materials_Conductor_sigma*x
+                         :materials_Conductor_sigma:x"}}},
            {"name":"magnetic_Air",
             "materials":"Air",
             "setup":{"coefficients":{
