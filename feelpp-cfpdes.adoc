@@ -101,34 +101,64 @@ json here
 --
 
 
-[.columns]
-=== Supra conductor
-
-[.column]
---
-images here
---
-[.column.xx-small]
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// 1st try : first column -> equations & picture, second column -> json
+// I don't know how to visualize the result
+[.column.x-small.left.decentlightbg]
 --
 .Model equations
-[stem]
+[latexmath.xx-small]
 ++++
 \begin{aligned}
-&\frac{\partial u}{\partial t}-\nabla \cdot M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \quad \text { in } \Omega \text {, }\\
-&M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \text { on } \partial \Omega,\\
-&M \lambda \nabla u \cdot n&=0 \quad \text { on } \partial \Omega .
+    -\frac{1}{\mu}\Delta a_\theta + \frac{1}{\mu r^2}a_\theta + \sigma \frac{\partial a_\theta}{\partial t} =0  &\text{ in } \Omega \\
+    a_\theta = \frac{r}{2}\text{B}_\text{applied} &\text{ on } \partial\Omega
 \end{aligned}
 ++++
+.Non-Linear Part (e-j power law): 
+[latexmath.xx-small]
+++++
+    j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}
+++++
+with :
+[latexmath.xx-small]
+++++
+    \sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\frac{\partial a_\theta}{\partial t}||}{e_c}\right)^{(1-n)/n} &\text{in } \Omega_c\\
+    0 &\text{in } \Omega\setminus\Omega_c \end{cases}
+++++
 
-.Mixed Form
-[stem]
-++++
-\begin{array}{cc}
-\frac{\partial c}{\partial t}-\nabla \cdot M \nabla \mu=&0 \quad \text { in } \Omega, \\
-\mu-\frac{d f}{d c}+\lambda \nabla^{2} c&=0 & \text { in } \Omega .
-\end{array}
-++++
+image:Figures/feelpp/feelpp-example_superconduct.png[height=150]
 --
+[.column.small.is-two-thirds]
+--
+.Bulk Superconductor Model
+[source,json]
+----
+
+"Models":{
+    "cfpdes":{ "equations":"magnetic" },
+    "magnetic":{
+        "common":{
+            "setup":{
+                "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
+            }},
+        "models":[{
+            "name":"magnetic_Conductor",
+            "materials":"Conductor",
+            "setup":{"coefficients":{
+                    "c":"x/mu:x:mu",
+                    "a":"1/mu/x:mu:x",
+                    "f":"0.",
+                    "d":"materials_Conductor_sigma_mod:materials_Conductor_sigma_mod"}}},
+           {"name":"magnetic_Air",
+            "materials":"Air",
+            "setup":{"coefficients":{
+                    "c":"x/mu:x:mu",
+                    "a":"1/mu/x:mu:x"}}}
+        ]}}
+    ...
+----
+--
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 [.columns]
 === Supra Conductor
