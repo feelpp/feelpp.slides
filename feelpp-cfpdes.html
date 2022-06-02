@@ -432,10 +432,9 @@ d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alp
     -\frac{1}{\mu}\Delta a_\theta + \frac{1}{\mu r^2}a_\theta + \sigma \frac{\partial a_\theta}{\partial t} =0  &amp;\text{ in } \Omega \\
     a_\theta = \frac{r}{2}\text{B}_\text{applied} &amp;\text{ on } \partial\Omega
 \end{aligned}\]</div></div>
-<div class="paragraph"><div class="title">Non-Linear Part (e-j power law): \$j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}\$</div><p>with :</p></div>
-<div class="stemblock xx-small"><div class="content">\[\sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\partial a_\theta / \partial t||}{e_c}\right)^{(1-n)/n} &amp;\text{in } \Omega_c\\
+<div class="stemblock xx-small"><div class="title">Non-Linear Part (e-j power law):</div><div class="content">\[\sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\partial a_\theta / \partial t||}{e_c}\right)^{(1-n)/n} &amp;\text{in } \Omega_c\\
     0 &amp;\text{in } \Omega\setminus\Omega_c \end{cases}\]</div></div>
-<div class="paragraph"><p><span class="image"><img src="Figures/feelpp/feelpp-example_superconduct.png" alt="feelpp example superconduct" height="250"></span></p></div></div></div>
+<div class="paragraph"><p><span class="image"><img src="Figures/feelpp/feelpp-example_superconduct.png" alt="feelpp example superconduct" height="200"></span></p></div></div></div>
 <div class="openblock column small is-two-thirds"><div class="content"><div class="listingblock"><div class="title">Bulk Superconductor Model</div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">"Models":{
     "cfpdes":{ "equations":"magnetic" },
     "magnetic":{
