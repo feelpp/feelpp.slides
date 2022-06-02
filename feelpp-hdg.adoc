@@ -1,16 +1,101 @@
 == Hybridized Discontinuous Galerkin
 
+=== Second order elliptic problem
+
+[latexmath]
+++++
+\[\begin{aligned}
+    \mathbf{j} + \mathcal{K} \nabla p &= 0 & \text{ in } \Omega \\
+    \nabla \cdot \mathbf{j} &= f & \text{ in } \Omega \\
+    p &= 0 & \text{ on } \Gamma_D  \\
+    \mathbf{j} \cdot \mathbf{n} &= g_N & \text{ on } \Gamma_N
+    \end{aligned}\]
+++++
+
+[.columns]
+=== Methodology: HDG
+
+[.column.small]
+--
+* *Provides* optimal approximation of both primal and flux variables
+latexmath:[$p$] and latexmath:[$\mathbf{j}$] respectively;
+* *Requires* less globally coupled degrees of freedom than DG methods of
+comparable accuracy;
+* *Allows* local element-by-element postprocessing to obtain new
+approximations with enhanced accuracy and conservation properties
+--
+
+[.column.small]
+--
+Some Applications
+
+* Electrostatic
+* Heat transfer
+* Flow in porous media
+* Elasticity and Poro-Elasticity
+--
+
+
+=== The integral boundary condition
+
+[.col3-l.xx-small]
+--
+.Electric potential in a nanoscale floating gate nMOS
+image:Figures/article/RED/electricfield_with_arrow.png[image,height=200] 
+--
+[.col3-c.xx-small]
+--
+.Magnetic field in a high field magnet (stem:[$36T$])
+image:Figures/feelpp/400x200/Magnet_3D_brochure_highresolution2-400x200.png[image,height=200]
+--
+[.col3-r.xx-small]
+--
+.Tissue perfusion in the Lamina Cribrosa
+image:Figures/feelpp/eye2brain-eye-200x200.png[image,height=200]
+--
+
+[.clear.decent]
+--
+*Common Feature* Integral Boundary Condition (IBC):
+[stem]
+++++
+\begin{aligned}
+\int_{\Gamma_{ibc}} \mathbf{j} \cdot \mathbf{n} &= I_{target}\\
+p&=\text{constant but unknown}
+\end{aligned}
+++++
+--
+
+=== The integral boundary condition
+
+[.fragment]
+--
+*New Feature* Integral Boundary Condition (IBC):
+stem:[$\int_{\Gamma_{ibc}} \mathbf{j} \cdot \mathbf{n} = I_{target}$]
+--
+
+[.fragment]
+--
+Properties::
+* the restriction stem:[$p\rvert_{\Gamma_{ibc}}$] is equal to a
+constant value (to be determined)
+* the integral over stem:[$\Gamma_{ibc}$] of the normal flux
+stem:[$\mathbf{j} \cdot \mathbf{n}$] is equal to a given value
+--
+
+[.refs.xx-small]
+--
+* *A HDG method for elliptic problems with integral boundary condition: Theory and Applications*, Silvia Bertoluzza,Giovanna Guidoboni,Romain Hild,Daniele Prada,Christophe Prud'homme,Riccardo Sacco,Lorenzo Sala,Marcela Szopos, 2021 submitted
+--
+
 [.columns]
 === HDG Laplacian 
 
 [.column]
 --
-First, we need to create
-latexmath:[$\mathcal{F}_h^{ibc}$] and
-latexmath:[$\mathcal{F}_h\setminus\mathcal{F}_h^{ibc}$].
 
-Complement and submesh
-
+* latexmath:[$\mathcal{F}_h^{ibc}$] and
+* latexmath:[$\mathcal{F}_h\setminus\mathcal{F}_h^{ibc}$].
 
 --
 
@@ -44,17 +129,14 @@ Unified Analysis of Discontinuous Galerkin Methods for Elliptic Problems. SIAM J
 
 [.column]
 --
-Then, we need to create the spaces
-latexmath:[$V_h,W_h,\tilde{M}_h$] and latexmath:[$M_h^*$]. +
-We also want to be able to have several number of integral boundary
-conditions, the number of which will only be known at execution.
+1. create the spaces latexmath:[$V_h,W_h,\tilde{M}_h$] and latexmath:[$M_h^*$].
+2. handle arbirary number of IBCs
+3. initialize spaces and product space
 
 [latexmath]
 ++++
 \[V_h\times W_h\times \tilde{M}_h\times (M_h^*)^n\]
 ++++
-
-Spaces initialization and product space
 --
 
 [source.columnn.small,c++]
@@ -126,7 +208,7 @@ auto ip = U(3_c,0); // element of $M^*_h$
 
 [.notes]
 --
-* Access a dynamic block of the matrix by adding the relative index. +
+* Access a dynamic block of the matrix by adding the relative index. 
 * create an element of the product space as usual, and access its
 component in the same way.
 --

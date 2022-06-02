@@ -20,13 +20,10 @@ jobs:
         bundle2.7 install
         mkdir build 
         ./render bundle2.7
-    - name: Install
-      run: |
-        cp -r css fonts images videos build
-        git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git build/reveal.js
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
+          # target-folder: ${GITHUB_REF##*/}
           FOLDER: build # The folder the action should deploy.

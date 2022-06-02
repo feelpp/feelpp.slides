@@ -31,7 +31,7 @@
 //:revealjs_transitionSpeed: fast
 :revealjs_parallaxBackgroundImage: images/background-landscape-light-orange.jpg
 :revealjs_parallaxBackgroundSize: 4936px 2092px
-:customcss: css/slides.css
+:customcss: css/presentation.css
 :imagesdir: images
 :source-highlighter: highlightjs
 :highlightjs-theme: css/atom-one-light.css

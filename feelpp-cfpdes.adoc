@@ -6,23 +6,27 @@
 
 Many (mono/multi)physics problem can be written into a system of generic PDE, parametrized by some coefficients :
 
-[.column]
+[.column.x-small]
 --
+Find stem:[u_i,i=1...,N]  such that
 [latexmath]
 ++++
-\[d \frac{\partial u}{\partial t} + \nabla \cdot \left( -c \nabla u - \alpha u + \gamma \right) + \beta \cdot \nabla u + a u = f \quad \text{ in } \Omega\]
+d_i \frac{\partial u_i}{\partial t} + \nabla_i \cdot \left( -c \nabla u_i - \alpha u_i + \gamma_i \right) + \beta_i \cdot \nabla u_i + a u_i = f \quad \text{ in } \Omega
 ++++
 --
 [.column]
 --
-* latexmath:[$d$] : damping or mass coefficient
-* latexmath:[$c$] : diffusion coefficient
-* latexmath:[$\alpha$] : conservative flux convection coefficient
-* latexmath:[$\gamma$] : conservative flux source term
+* latexmath:[$d_i$] : damping or mass coefficient
+* latexmath:[$c_i$] : diffusion coefficient
+* latexmath:[$\alpha_i$] : conservative flux convection coefficient
+* latexmath:[$\gamma_i$] : conservative flux source term
 
-* latexmath:[$\beta$] : convection coefficient
-* latexmath:[$a$] : absorption or reaction coefficient
-* latexmath:[$f$] : source term
+* latexmath:[$\beta_i$] : convection coefficient
+* latexmath:[$a_i$] : absorption or reaction coefficient
+* latexmath:[$f_i$] : source term
+
+The coefficients can depend on the unknowns stem:[u_j,j=1 \ldots N].
+
 --
 
 [.columns]

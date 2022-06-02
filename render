@@ -26,5 +26,8 @@ base=`basename $SRCFILE .adoc`
 
 done
 
-if test ! -d build; then mkdir build; fi
+if test -d build; then rm -rf build; fi
+mkdir build
+cp -r css fonts images videos build
 mv *.html build
+git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git build/reveal.js
