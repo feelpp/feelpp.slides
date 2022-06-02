@@ -104,6 +104,10 @@ json here
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 1st try : first column -> equations & picture, second column -> json
 // I don't know how to visualize the result
+
+[%notitle]
+[.columns]
+===  Coefficient Form PDEs 
 [.column.x-small.left.decentlightbg]
 --
 .Model equations
