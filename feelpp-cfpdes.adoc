@@ -137,9 +137,12 @@ image:Figures/feelpp/feelpp-example_supra.png[height=300]
 
 "Models":{
     "cfpdes":{ "equations":"magnetic" },
-    "magnetic":{"common":{"setup":{
-        "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
-        }},
+    "magnetic":{
+        "common":{"setup":{"unknown":{
+            "basis":"Pch1",
+            "name":"Atheta","
+            symbol":"Atheta"
+        }}},
         "models":[{
             "name":"magnetic_Conductor",
             "materials":"Conductor",
@@ -155,7 +158,7 @@ image:Figures/feelpp/feelpp-example_supra.png[height=300]
                     "c":"x/mu:x:mu",
                     "a":"1/mu/x:mu:x"}}}
         ]}}
-    ...
+...
 ----
 --
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
