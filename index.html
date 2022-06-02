@@ -513,16 +513,38 @@ d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alp
 \mu-\frac{d f}{d c}+\lambda \nabla^{2} c&amp;=0 &amp; \text { in } \Omega .
 \end{array}\]</div></div></div></div></div></section><section id="_cahn_hilliard_2" class="columns"><h2>Cahn Hilliard</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><div class="title">2D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
 <div class="videoblock"><div class="title">3D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
-<div class="openblock column xx-small"><div class="content"><div class="listingblock"><div class="title">Phase separation modeling</div><div class="content"><pre class="highlightjs highlight"><code class="language-json hljs" data-noescape="true" data-lang="json">json here</code></pre></div></div></div></div></div></section><section id="_supra_conductor" class="columns"><h2>Supra conductor</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="paragraph"><p>images here</p></div></div></div>
-<div class="openblock column xx-small"><div class="content"><div class="stemblock"><div class="title">Model equations</div><div class="content">\[\begin{aligned}
-&amp;\frac{\partial u}{\partial t}-\nabla \cdot M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&amp;=0 \quad \text { in } \Omega \text {, }\\
-&amp;M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&amp;=0 \text { on } \partial \Omega,\\
-&amp;M \lambda \nabla u \cdot n&amp;=0 \quad \text { on } \partial \Omega .
+<div class="openblock column xx-small"><div class="content"><div class="listingblock"><div class="title">Phase separation modeling</div><div class="content"><pre class="highlightjs highlight"><code class="language-json hljs" data-noescape="true" data-lang="json">json here</code></pre></div></div></div></div>
+<div class="openblock column x-small left decentlightbg"><div class="content"><div class="stemblock xx-small"><div class="title">Model equations</div><div class="content">\[\begin{aligned}
+    -\frac{1}{\mu}\Delta a_\theta + \frac{1}{\mu r^2}a_\theta + \sigma \frac{\partial a_\theta}{\partial t} =0  &amp;\text{ in } \Omega \\
+    a_\theta = \frac{r}{2}\text{B}_\text{applied} &amp;\text{ on } \partial\Omega
 \end{aligned}\]</div></div>
-<div class="stemblock"><div class="title">Mixed Form</div><div class="content">\[\begin{array}{cc}
-\frac{\partial c}{\partial t}-\nabla \cdot M \nabla \mu=&amp;0 \quad \text { in } \Omega, \\
-\mu-\frac{d f}{d c}+\lambda \nabla^{2} c&amp;=0 &amp; \text { in } \Omega .
-\end{array}\]</div></div></div></div></div></section><section id="_supra_conductor_2" class="columns"><h2>Supra Conductor</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><div class="title">2D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
+<div class="stemblock xx-small"><div class="title">Non-Linear Part (e-j power law):</div><div class="content">\[j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}\]</div></div>
+<div class="paragraph"><p>with :</p></div>
+<div class="stemblock xx-small"><div class="content">\[\sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\frac{\partial a_\theta}{\partial t}||}{e_c}\right)^{(1-n)/n} &amp;\text{in } \Omega_c\\
+    0 &amp;\text{in } \Omega\setminus\Omega_c \end{cases}\]</div></div>
+<div class="paragraph"><p><span class="image"><img src="images/Figures/feelpp/feelpp-example_superconduct.png" alt="feelpp example superconduct" height="150"></span></p></div></div></div>
+<div class="openblock column small is-two-thirds"><div class="content"><div class="listingblock"><div class="title">Bulk Superconductor Model</div><div class="content"><pre class="highlightjs highlight"><code class="language-json hljs" data-noescape="true" data-lang="json">"Models":{
+    "cfpdes":{ "equations":"magnetic" },
+    "magnetic":{
+        "common":{
+            "setup":{
+                "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
+            }},
+        "models":[{
+            "name":"magnetic_Conductor",
+            "materials":"Conductor",
+            "setup":{"coefficients":{
+                    "c":"x/mu:x:mu",
+                    "a":"1/mu/x:mu:x",
+                    "f":"0.",
+                    "d":"materials_Conductor_sigma_mod:materials_Conductor_sigma_mod"}}},
+           {"name":"magnetic_Air",
+            "materials":"Air",
+            "setup":{"coefficients":{
+                    "c":"x/mu:x:mu",
+                    "a":"1/mu/x:mu:x"}}}
+        ]}}
+    ...</code></pre></div></div></div></div></div></section><section id="_supra_conductor" class="columns"><h2>Supra Conductor</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><div class="title">2D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
 <div class="videoblock"><div class="title">3D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
 <div class="openblock column xx-small"><div class="content"><div class="listingblock"><div class="title">Phase separation modeling</div><div class="content"><pre class="highlightjs highlight"><code class="language-json hljs" data-noescape="true" data-lang="json">json here</code></pre></div></div></div></div></div></section></section>
 <section><section id="_hybridized_discontinuous_galerkin"><h2>Hybridized Discontinuous Galerkin</h2></section><section id="_second_order_elliptic_problem"><h2>Second order elliptic problem</h2><div class="slide-content"><div class="stemblock"><div class="content">\[\begin{aligned}
