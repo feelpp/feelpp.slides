@@ -104,9 +104,9 @@ json here
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 1st try : first column -> equations & picture, second column -> json
 // I don't know how to visualize the result
-
+[%notitle]
 [.columns]
-=== Supra Conductor
+=== SuperConductor
 [.column.x-small.left.decentlightbg]
 --
 .Model equations
@@ -117,18 +117,11 @@ json here
     a_\theta = \frac{r}{2}\text{B}_\text{applied} &\text{ on } \partial\Omega
 \end{aligned}
 ++++
-.Non-Linear Part (e-j power law): 
-[latexmath.xx-small]
-++++
-    j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}
-++++
-[small]
-----
+.Non-Linear Part (e-j power law): stem:[j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}]
 with :
-----
 [latexmath.xx-small]
 ++++
-    \sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\frac{\partial a_\theta}{\partial t}||}{e_c}\right)^{(1-n)/n} &\text{in } \Omega_c\\
+    \sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\partial a_\theta / \partial t||}{e_c}\right)^{(1-n)/n} &\text{in } \Omega_c\\
     0 &\text{in } \Omega\setminus\Omega_c \end{cases}
 ++++
 
@@ -145,17 +138,17 @@ image:Figures/feelpp/feelpp-example_superconduct.png[height=250]
     "magnetic":{
         "common":{"setup":{
             "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
-            }},
+        }},
         "models":[{
             "name":"magnetic_Conductor",
             "materials":"Conductor",
             "setup":{"coefficients":{
                     "c":"x/mu:x:mu",
                     "a":"1/mu/x:mu:x",
-                    "f":"0.",
                     "d":"materials_Conductor_sigma*x
-                         :materials_Conductor_sigma:x"}}},
-           {"name":"magnetic_Air",
+                         :materials_Conductor_sigma:x"}}
+        },{
+            "name":"magnetic_Air",
             "materials":"Air",
             "setup":{"coefficients":{
                     "c":"x/mu:x:mu",
@@ -167,7 +160,7 @@ image:Figures/feelpp/feelpp-example_superconduct.png[height=250]
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 [.columns]
-=== Supra Conductor
+=== SuperConductor
 
 [.column]
 --
