@@ -125,8 +125,9 @@ json here
 
 // picture with plot
 // image:Figures/feelpp/feelpp-example_superconduct.png[height=200] 
+
 // picture without plot
-image:Figures/feelpp/feelpp-example_supra.png[height=250]
+image:Figures/feelpp/feelpp-example_supra.png[height=300]
 --
 [.column.small.is-two-thirds]
 --
@@ -136,9 +137,8 @@ image:Figures/feelpp/feelpp-example_supra.png[height=250]
 
 "Models":{
     "cfpdes":{ "equations":"magnetic" },
-    "magnetic":{
-        "common":{"setup":{
-            "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
+    "magnetic":{"common":{"setup":{
+        "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
         }},
         "models":[{
             "name":"magnetic_Conductor",
