@@ -5,7 +5,7 @@ on: [push]
 jobs:
 
   build_docs:
-    runs-on: ubuntu-latest
+    runs-on: self-ubuntu-20.04
     name: Build, Install, Package slides
 #    if: "!contains(github.event.head_commit.message, 'docs skip')"
     steps:
@@ -16,9 +16,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.DOCS_GITHUB_KEY }}
     - name: Build
       run: |
-        sudo apt install asciidoctor ruby2.7
-        bundle2.7 install
-        mkdir build 
+        bundle2.7 install --path vendor/bundle   
         ./render bundle2.7
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
