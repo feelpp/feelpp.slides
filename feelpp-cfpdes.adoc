@@ -103,7 +103,6 @@ json here
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 1st try : first column -> equations & picture, second column -> json
-// I don't know how to visualize the result
 [%notitle]
 [.columns]
 === SuperConductor
@@ -117,15 +116,14 @@ json here
     a_\theta = \frac{r}{2}\text{B}_\text{applied} &\text{ on } \partial\Omega
 \end{aligned}
 ++++
-.Non-Linear Part (e-j power law): stem:[j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}]
-with :
+.Non-Linear Part (e-j power law):
 [latexmath.xx-small]
 ++++
     \sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\partial a_\theta / \partial t||}{e_c}\right)^{(1-n)/n} &\text{in } \Omega_c\\
     0 &\text{in } \Omega\setminus\Omega_c \end{cases}
 ++++
 
-image:Figures/feelpp/feelpp-example_superconduct.png[height=250]
+image:Figures/feelpp/feelpp-example_superconduct.png[height=200]
 --
 [.column.small.is-two-thirds]
 --
