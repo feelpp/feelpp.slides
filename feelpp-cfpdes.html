@@ -433,16 +433,15 @@ d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alp
     a_\theta = \frac{r}{2}\text{B}_\text{applied} &amp;\text{ on } \partial\Omega
 \end{aligned}\]</div></div>
 <div class="stemblock xx-small"><div class="title">Non-Linear Part (e-j power law):</div><div class="content">\[j_\theta=-\sigma\frac{\partial a_\theta}{\partial t}\]</div></div>
-<div class="paragraph"><p>with :</p></div>
+<div class="listingblock"><div class="content"><pre>with :</pre></div></div>
 <div class="stemblock xx-small"><div class="content">\[\sigma=\begin{cases}\frac{j_c}{e_c}\left(\frac{||-\frac{\partial a_\theta}{\partial t}||}{e_c}\right)^{(1-n)/n} &amp;\text{in } \Omega_c\\
     0 &amp;\text{in } \Omega\setminus\Omega_c \end{cases}\]</div></div>
-<div class="paragraph"><p><span class="image"><img src="Figures/feelpp/feelpp-example_superconduct.png" alt="feelpp example superconduct" height="150"></span></p></div></div></div>
+<div class="paragraph"><p><span class="image"><img src="Figures/feelpp/feelpp-example_superconduct.png" alt="feelpp example superconduct" height="250"></span></p></div></div></div>
 <div class="openblock column small is-two-thirds"><div class="content"><div class="listingblock"><div class="title">Bulk Superconductor Model</div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">"Models":{
     "cfpdes":{ "equations":"magnetic" },
     "magnetic":{
-        "common":{
-            "setup":{
-                "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
+        "common":{"setup":{
+            "unknown":{"basis":"Pch1","name":"Atheta","symbol":"Atheta"}
             }},
         "models":[{
             "name":"magnetic_Conductor",
@@ -451,7 +450,8 @@ d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alp
                     "c":"x/mu:x:mu",
                     "a":"1/mu/x:mu:x",
                     "f":"0.",
-                    "d":"materials_Conductor_sigma_mod:materials_Conductor_sigma_mod"}}},
+                    "d":"materials_Conductor_sigma*x
+                         :materials_Conductor_sigma:x"}}},
            {"name":"magnetic_Air",
             "materials":"Air",
             "setup":{"coefficients":{
