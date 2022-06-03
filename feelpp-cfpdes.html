@@ -392,7 +392,7 @@ td.hdlist1 {
 link.rel = 'stylesheet';
 link.type = 'text/css';
 link.href = window.location.search.match( /print-pdf/gi ) ? "https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/pdf.css" : "https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/paper.css";
-document.getElementsByTagName( 'head' )[0].appendChild( link );</script></head><body><div class="reveal"><div class="slides"><section><section id="_generic_toolbox_coefficient_form_pdes" class="columns"><h2>Generic Toolbox :: Coefficient Form PDEs</h2></section><section id="_coefficient_form_pdes" class="columns"><div class="slide-content"><div class="openblock column x-small left decentlightbg"><div class="content"><div class="paragraph"><p>Find \$u_i,i=1...,N\$  such that</p></div>
+document.getElementsByTagName( 'head' )[0].appendChild( link );</script></head><body><div class="reveal"><div class="slides"><section><section id="_generic_toolbox_coefficient_form_pdes" class="columns"><h2>Generic Toolbox :: Coefficient Form PDEs</h2></section><section id="_coefficient_form_pdes" class="columns"><div class="slide-content"><div class="openblock column x-small left decentlightbg"><div class="content"><div class="paragraph"><p>Find scalar or vector fields \$u_i,i=1...,N\$  such that</p></div>
 <div class="stemblock xx-small"><div class="content">\[\begin{aligned}
 d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alpha u_i + \gamma_i \right)&amp; \\
 + \beta_i \cdot \nabla u_i + a u_i &amp;= f \quad \text{ in } \Omega
@@ -417,21 +417,40 @@ d_i \frac{\partial u_i}{\partial t} + \nabla \cdot \left( -c_i \nabla u_i - \alp
                 "a":"-( (thebeta*equation1_u)/(equation1_u+thealpha) - thegamma ):thebeta:thealpha:thegamma:equation1_u", // life and death
                 "d":"1"// time derivative
             } } } }
-    ...</code></pre></div></div></div></div></div></section><section id="_cahn_hilliard" class="columns"><h2>Cahn Hilliard</h2><div class="slide-content"><div class="openblock column center"><div class="content"><div class="paragraph"><p><span class="image"><img src="Figures/feelpp/ch2d.png" alt="ch2d" width="400"></span></p></div>
+    ...</code></pre></div></div></div></div></div></section><section id="_cahn_hilliard" class="columns"><h2>Cahn Hilliard</h2><div class="slide-content"><div class="openblock column center is-two-thirds"><div class="content"><div class="paragraph"><div class="title">Cahn-Hilliard in L-Shape domain \$6e-3s\$</div><p><span class="image"><img src="Figures/feelpp/toolboxes/cfpdes/cahn-hilliard/ch-3d-t6e-3.png" alt="image" height="300"></span>
+<span class="image"><img src="Figures/feelpp/ch2d.png" alt="ch2d" height="300"></span></p></div>
 <div class="stemblock xx-small"><div class="content">\[\begin{aligned}
-f(c)=c^2(c^2-1),\, \lambda=10^{-4}
+f(u)=u^2(u^2-1),\, \lambda=10^{-4}
 \end{aligned}\]</div></div></div></div>
-<div class="openblock column xx-small"><div class="content"><div class="stemblock"><div class="title">Phase separation modeling</div><div class="content">\$\begin{aligned}
-&amp;\frac{\partial u}{\partial t}-\nabla \cdot M\left(\nabla\left(f'(u)-\lambda \Delta u\right)\right)&amp;=0 \quad \text { in } \Omega \text {, }\\
-&amp;M\nabla\left(f'(u)-\lambda \Delta u\right)&amp;=0 \text { on } \partial \Omega,\\
-&amp;M \lambda \nabla u \cdot n&amp;=0 \quad \text { on } \partial \Omega .
+<div class="openblock column xxx-small"><div class="content"><div class="stemblock"><div class="title">Phase separation modeling</div><div class="content">\$\begin{aligned}
+\partial_t u-\nabla \cdot M\left(\nabla\left(f'(u)-\lambda \Delta u\right)\right)&amp;=0 \quad \text { in } \Omega \text {, }\\
+M\nabla\left(f'(u)-\lambda \Delta u\right)&amp;=0 \text { on } \partial \Omega,\\
+M \lambda \nabla u \cdot n&amp;=0 \quad \text { on } \partial \Omega .
 \end{aligned}\$</div></div>
-<div class="stemblock"><div class="title">Mixed Form</div><div class="content">\$\begin{array}{cc}
-\frac{\partial c}{\partial t}-\nabla \cdot M \nabla \mu=&amp;0 \quad \text { in } \Omega, \\
-\mu-f'(c)+\lambda \Delta c&amp;=0 &amp; \text { in } \Omega .
-\end{array}\$</div></div></div></div></div></section><section id="_cahn_hilliard_2" class="columns"><h2>Cahn Hilliard</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><div class="title">2D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/jWtrfdn_Kjs?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
+<div class="stemblock"><div class="title">Mixed Form</div><div class="content">\$\begin{array}{rl}
+\frac{\partial u}{\partial t}-\nabla \cdot M \nabla \mu &amp;=0 \quad \text { in } \Omega, \\
+\mu-f'(u)+\lambda \Delta u&amp;=0  \text { in } \Omega .
+\end{array}\$</div></div></div></div></div></section><section id="_cahn_hilliard_2" class="columns"><div class="slide-content"><div class="openblock column center"><div class="content"><div class="videoblock"><div class="title">2D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/jWtrfdn_Kjs?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
 <div class="videoblock"><div class="title">3D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/zf2a60s4I8c?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
-<div class="openblock column xx-small"><div class="content"><div class="listingblock"><div class="title">Phase separation modeling</div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">json here</code></pre></div></div></div></div></div></section><section id="_superconductor" class="columns"><div class="slide-content"><div class="openblock column x-small left decentlightbg"><div class="content"><div class="stemblock xx-small"><div class="title">Model equations</div><div class="content">\[\begin{aligned}
+<div class="openblock column x-small"><div class="content"><div class="listingblock"><div class="title">Phase separation modeling</div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">"Models":
+{
+  "cfpdes":{ "equations":["equation1","equation2"] },
+  "equation1":{
+    "setup":{
+        "unknown":{"basis":"Pch1","name":"c","symbol":"c"},
+        "coefficients":{
+           "d": "1",
+           "gamma": "{-equation2_grad_mu_0,-equation2_grad_mu_1,-equation2_grad_mu_2}"
+  }}},
+  "equation2":{
+    "setup":{
+        "unknown":{"basis":"Pch1","name":"mu","symbol":"mu"},
+        "coefficients":{
+           "gamma":"{lambda*equation1_grad_c_0,lambda*equation1_grad_c_1, lambda*equation1_grad_c_2}",
+           "a":"1",
+           "f": "equation1_c^2*(equation1_c^2 - 1)"
+  } } }
+}</code></pre></div></div></div></div></div></section><section id="_superconductor" class="columns"><div class="slide-content"><div class="openblock column x-small left decentlightbg"><div class="content"><div class="stemblock xx-small"><div class="title">Model equations</div><div class="content">\[\begin{aligned}
     -\frac{1}{\mu}\Delta a_\theta + \frac{1}{\mu r^2}a_\theta + \sigma \frac{\partial a_\theta}{\partial t} =0  &amp;\text{ in } \Omega \\
     a_\theta = \frac{r}{2}\text{B}_\text{applied} &amp;\text{ on } \partial\Omega
 \end{aligned}\]</div></div>
@@ -463,9 +482,7 @@ f(c)=c^2(c^2-1),\, \lambda=10^{-4}
         ]
     }
 }
-...</code></pre></div></div></div></div></div></section><section id="_superconductor_2" class="columns"><h2>SuperConductor</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><div class="title">2D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
-<div class="videoblock"><div class="title">3D</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
-<div class="openblock column xx-small"><div class="content"><div class="listingblock"><div class="title">Phase separation modeling</div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">json here</code></pre></div></div></div></div></div></section></section></div></div><script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
+...</code></pre></div></div></div></div></div></section></section></div></div><script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
   if (slide.getAttribute('data-background-color')) return;
   // user needs to explicitly say he wants CSS color to override otherwise we might break custom css or theme (#226)
   if (!(slide.classList.contains('canvas') || slide.classList.contains('background'))) return;
