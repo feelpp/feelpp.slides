@@ -8,7 +8,7 @@
 
 [.column.x-small.left.decentlightbg]
 --
-Find stem:[u_i,i=1...,N]  such that
+Find scalar or vector fields stem:[u_i,i=1...,N]  such that
 [latexmath.xx-small]
 ++++
 \begin{aligned}
@@ -56,42 +56,52 @@ video::P-jOk82f8Ps[youtube, options="autoplay,loop,modest",height=300]
 [.columns]
 === Cahn Hilliard
 
-[.column]
+[.column.center.is-two-thirds]
 --
 .Cahn-Hilliard in L-Shape domain stem:[6e-3s]
-image:Figures/feelpp/toolboxes/cfpdes/cahn-hilliard/ch-3d-t6e-3.png[image,width=600]
+image:Figures/feelpp/toolboxes/cfpdes/cahn-hilliard/ch-3d-t6e-3.png[image,height=300]
+image:Figures/feelpp/ch2d.png[height=300]
+
+[latexmath.xx-small]
+++++
+\begin{aligned}
+f(u)=u^2(u^2-1),\, \lambda=10^{-4}
+\end{aligned}
+++++
 --
-[.column.xx-small]
+
+[.column.xxx-small]
 --
 .Phase separation modeling
 [stem]
 ++++
-\begin{array}[rl]
-\frac{\partial u}{\partial t}-\nabla \cdot M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \quad \text { in } \Omega \text {, }\\
-M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \text { on } \partial \Omega,\\
-M \lambda \nabla u \cdot n=0 \quad \text { on } \partial \Omega,\quad f(u) &= u^2 (u^2-1)
-\end{array}
+\begin{aligned}
+\partial_t u-\nabla \cdot M\left(\nabla\left(f'(u)-\lambda \Delta u\right)\right)&=0 \quad \text { in } \Omega \text {, }\\
+M\nabla\left(f'(u)-\lambda \Delta u\right)&=0 \text { on } \partial \Omega,\\
+M \lambda \nabla u \cdot n&=0 \quad \text { on } \partial \Omega .
+\end{aligned}
 ++++
 
 .Mixed Form
 [stem]
 ++++
 \begin{array}{rl}
-\frac{\partial c}{\partial t}-\nabla \cdot M \nabla \mu=&0 \quad \text { in } \Omega, \\
-\mu-\frac{d f}{d u}+\lambda \nabla^{2} u&=0 & \text { in } \Omega .
+\frac{\partial u}{\partial t}-\nabla \cdot M \nabla \mu &=0 \quad \text { in } \Omega, \\
+\mu-f'(u)+\lambda \Delta u&=0  \text { in } \Omega .
 \end{array}
 ++++
 --
 
+[%notitle]
 [.columns]
 === Cahn Hilliard
 
-[.column]
+[.column.center]
 --
 .2D
-video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
+video::jWtrfdn_Kjs[youtube, opts="autoplay,loop,modest",height=300]
 .3D
-video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
+video::zf2a60s4I8c[youtube, opts="autoplay,loop,modest",height=300]
 --
 [.column.x-small]
 --
@@ -100,22 +110,22 @@ video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
 ----
 "Models":
 {
-    "cfpdes":{ "equations":["equation1","equation2"] },
-    "equation1":{
-        "setup":{
-            "unknown":{"basis":"Pch1","name":"c","symbol":"c"},
-            "coefficients":{
-                "d": "1",
-                "gamma": "{-equation2_grad_mu_0,-equation2_grad_mu_1,-equation2_grad_mu_2}"
-    }}},
-    "equation2":{
-        "setup":{
-            "unknown":{"basis":"Pch1","name":"mu","symbol":"mu"},
-            "coefficients":{
-                "gamma":"{lambda*equation1_grad_c_0,lambda*equation1_grad_c_1, lambda*equation1_grad_c_2}", 
-                "a":"1",
-                "f": "equation1_c*equation1_c*(equation1_c*equation1_c - 1)"
-    } } }
+  "cfpdes":{ "equations":["equation1","equation2"] },
+  "equation1":{
+    "setup":{
+        "unknown":{"basis":"Pch1","name":"c","symbol":"c"},
+        "coefficients":{
+           "d": "1",
+           "gamma": "{-equation2_grad_mu_0,-equation2_grad_mu_1,-equation2_grad_mu_2}"
+  }}},
+  "equation2":{
+    "setup":{
+        "unknown":{"basis":"Pch1","name":"mu","symbol":"mu"},
+        "coefficients":{
+           "gamma":"{lambda*equation1_grad_c_0,lambda*equation1_grad_c_1, lambda*equation1_grad_c_2}", 
+           "a":"1",
+           "f": "equation1_c^2*(equation1_c^2 - 1)"
+  } } }
 }
 ----
 --
