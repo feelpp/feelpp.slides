@@ -58,25 +58,27 @@ video::P-jOk82f8Ps[youtube, options="autoplay,loop,modest",height=300]
 
 [.column]
 --
+.Cahn-Hilliard in L-Shape domain stem:[6e-3s]
+image:Figures/feelpp/toolboxes/cfpdes/cahn-hilliard/ch-3d-t6e-3.png[image,width=600]
 --
 [.column.xx-small]
 --
 .Phase separation modeling
 [stem]
 ++++
-\begin{aligned}
-&\frac{\partial u}{\partial t}-\nabla \cdot M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \quad \text { in } \Omega \text {, }\\
-&M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \text { on } \partial \Omega,\\
-&M \lambda \nabla u \cdot n&=0 \quad \text { on } \partial \Omega .
-\end{aligned}
+\begin{array}[rl]
+\frac{\partial u}{\partial t}-\nabla \cdot M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \quad \text { in } \Omega \text {, }\\
+M\left(\nabla\left(\frac{d f}{d u}-\lambda \nabla^{2} u\right)\right)&=0 \text { on } \partial \Omega,\\
+M \lambda \nabla u \cdot n=0 \quad \text { on } \partial \Omega,\quad f(u) &= u^2 (u^2-1)
+\end{array}
 ++++
 
 .Mixed Form
 [stem]
 ++++
-\begin{array}{cc}
+\begin{array}{rl}
 \frac{\partial c}{\partial t}-\nabla \cdot M \nabla \mu=&0 \quad \text { in } \Omega, \\
-\mu-\frac{d f}{d c}+\lambda \nabla^{2} c&=0 & \text { in } \Omega .
+\mu-\frac{d f}{d u}+\lambda \nabla^{2} u&=0 & \text { in } \Omega .
 \end{array}
 ++++
 --
@@ -91,12 +93,30 @@ video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
 .3D
 video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
 --
-[.column.xx-small]
+[.column.x-small]
 --
 .Phase separation modeling
 [source,json]
 ----
-json here
+"Models":
+{
+    "cfpdes":{ "equations":["equation1","equation2"] },
+    "equation1":{
+        "setup":{
+            "unknown":{"basis":"Pch1","name":"c","symbol":"c"},
+            "coefficients":{
+                "d": "1",
+                "gamma": "{-equation2_grad_mu_0,-equation2_grad_mu_1,-equation2_grad_mu_2}"
+    }}},
+    "equation2":{
+        "setup":{
+            "unknown":{"basis":"Pch1","name":"mu","symbol":"mu"},
+            "coefficients":{
+                "gamma":"{lambda*equation1_grad_c_0,lambda*equation1_grad_c_1, lambda*equation1_grad_c_2}", 
+                "a":"1",
+                "f": "equation1_c*equation1_c*(equation1_c*equation1_c - 1)"
+    } } }
+}
 ----
 --
 

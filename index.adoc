@@ -1,6 +1,8 @@
 :feelpp: Feel++
 :revealjs_customtheme: css/sky.css
 :customcss: css/presentation.css
+:source-highlighter: highlightjs
+:highlightjs-theme: css/atom-one-light.css
 = The Feel++ software: automation, code generation, applications
 :author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
 :date: 2022-06-06
@@ -36,8 +38,8 @@
 :revealjs_parallaxBackgroundSize: 4936px 2092px
 
 :imagesdir: images
-:source-highlighter: highlightjs
-:highlightjs-theme: css/atom-one-light.css
+
+
 // we want local served font-awesome fonts
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
