@@ -1,0 +1,49 @@
+:feelpp: Feel++
+= {feelpp} Slides
+
+== Installation
+
+The requirements are
+
+- ruby2.7 
+- bundle  included with ruby on ubuntu)
+
+
+
+.To install the required ruby packages
+[source,sh]
+----
+bundle2.7 install --path vendor/bundle   
+----
+
+To visualize the html pages, install npm (node.js)
+and install node-srv to create a webserver
+
+[source,bash]
+----
+npm i 
+----
+
+== Generate the Presentation 
+.To compile the presentation
+[source,sh]
+----
+./render <name of bundle executable>
+----
+
+e.g. on Ubuntu
+[source,sh]
+----
+./render bundle2.7
+----
+
+The results are then in the `build` directory
+
+== Visualize the presentation
+
+Simple run the following command to start the webserver
+
+[source,bash]
+----
+npm run serve
+----

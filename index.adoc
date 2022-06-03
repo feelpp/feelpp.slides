@@ -1,20 +1,23 @@
-= {feelpp} Eccomas 2022
-:backend: revealjs
-:revealjs_history: true
-:stem: latexmath
-// 16:9
-:revealjs_width: 1280
-:revealjs_height: 720
-// shorthands
-:topic: .topic,background-color="#da291c"
-:key: .topic,background-color="black"
-:revealjs_slidenumber: true
+:feelpp: Feel++
+:revealjs_customtheme: css/sky.css
+:customcss: css/presentation.css
+= The Feel++ software: automation, code generation, applications
 :author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
 :date: 2022-06-06
 :icons: font
+:stem: latexmath
+// shorthands
+:topic: .topic,background-color="#da291c"
+:key: .topic,background-color="black"
+
 // we want local served fonts. Therefore patched sky.css
 //:revealjs_theme: sky
 :revealjs_customtheme: css/sky.css
+:revealjs_slidenumber: true
+// 16:9
+:revealjs_width: 1280
+:revealjs_height: 720
+:revealjs_history: true
 //:revealjs_autoSlide: 5000
 :revealjs_history: true
 :revealjs_fragmentInURL: true
@@ -31,11 +34,10 @@
 //:revealjs_transitionSpeed: fast
 :revealjs_parallaxBackgroundImage: images/background-landscape-light-orange.jpg
 :revealjs_parallaxBackgroundSize: 4936px 2092px
-:customcss: css/presentation.css
+
 :imagesdir: images
 :source-highlighter: highlightjs
 :highlightjs-theme: css/atom-one-light.css
-//:highlightjs-languages: cpp, json
 // we want local served font-awesome fonts
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
@@ -48,3 +50,20 @@ include::feelpp-cfpdes.adoc[]
 
 include::feelpp-hdg.adoc[]
 
+[pass]
+++++
+<script src="./live.js"></script>
+
+<!-- hide "verbatim" sections if URL contains "terse"-Keyword -->
+<script>
+    if (!window.location.search.match(/bonus/gi)) {
+        var sections = document.getElementsByTagName('section');
+        for (var i = sections.length-1; i > -1; --i) {
+            console.log(sections[i].classList);
+            if (sections[i].classList.contains("bonuscontent")) {
+                sections[i].remove();
+            }
+        }
+    }
+</script>
+++++
