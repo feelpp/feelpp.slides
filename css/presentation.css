@@ -137,6 +137,9 @@ SECTION .title {
 .xx-small p, .xx-small li, p.xx-small, div.xx-small, span.xx-small, .xx-small code, .xx-small TABLE, .xx-small TH {
     font-size: 78% !important;
 }
+.xxx-small p, .xxx-small li, p.xxx-small, div.xxx-small, span.xxx-small, .xxx-small code, .xxx-small TABLE, .xxx-small TH {
+    font-size: 50% !important;
+}
 .small LI P {
   margin: 12px 0;
 }

@@ -186,21 +186,3 @@ image:Figures/feelpp/feelpp-example_supra.png[height=300]
 --
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-[.columns]
-=== SuperConductor
-
-[.column]
---
-.2D
-video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
-.3D
-video::ZNke5e7ElR4[youtube, opts="autoplay,loop,modest",height=300]
---
-[.column.xx-small]
---
-.Phase separation modeling
-[source,json]
-----
-json here
-----
---
