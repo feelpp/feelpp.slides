@@ -60,13 +60,16 @@ include::feelpp-hdg.adoc[]
 [.decentlightbg]
 === Final words
 
-* {feelpp} as a service
+* Develop {feelpp} as a service
 * Streamline complex workflows for advanced usage/studies
 ** data assimilation, 
 ** machine learning, 
 ** UQ on complex models
 ** ...
-
+* Go Digital twins
+** Building energy modeling
+** High field magnets 
+** Eye
 [pass]
 ++++
 <script src="./live.js"></script>

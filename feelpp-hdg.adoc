@@ -294,7 +294,7 @@ component in the same way.
 [.column.xx-small]
 --
 .High Field Magnets resistive / superconductors magnets
-image:Figures/feelpp/applications/hifimagnets.png[image,height=300]
+image:hifimagnets-hybrid.png[image,height=300]
 --
 
 [.column.xx-small]
