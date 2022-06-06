@@ -1,5 +1,5 @@
-//[.lightbg,background-iframe="https://youtu.be/23KXysegjK4?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1",background-video-loop="true",background-opacity="0.7"]
-//== Team
+[.decentlightbg,background-opacity="0.7"]
+== link:https://slides.feelpp.org[slides.feelpp.org]
 
 
 [.columns]
