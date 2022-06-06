@@ -58,8 +58,11 @@ include::feelpp-hdg.adoc[]
 
 [%notitle]
 [.decentlightbg]
+[.columns]
 === Final words
 
+[.column.small]
+--
 * Develop {feelpp} as a service
 * Streamline complex workflows for advanced usage/studies
 ** data assimilation, 
@@ -70,6 +73,14 @@ include::feelpp-hdg.adoc[]
 ** Building energy modeling
 ** High field magnets 
 ** Eye
+--
+[.column.small]
+--
+.Links
+* icon:code-branch[Github] link:https://github.com/feelpp/feelpp[github.com/feelpp/feelpp]
+* icon:book[Docs] link:https://docs.feelpp.org[docs.feelpp.org]
+* icon:twitter[Twitter] https://twitter.com/feelpp[*@feelpp*]
+--
 [pass]
 ++++
 <script src="./live.js"></script>
