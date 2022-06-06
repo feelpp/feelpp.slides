@@ -1,4 +1,4 @@
-== Toolboxes Anatomy and Recent Developments
+== Toolboxes Configuration and Recent Developments
 
 [.columns]
 === Toolboxes :: Setup
