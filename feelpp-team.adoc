@@ -1,5 +1,5 @@
-[.lightbg,background-iframe="https://youtu.be/23KXysegjK4?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1",background-video-loop="true",background-opacity="0.7"]
-== Team
+//[.lightbg,background-iframe="https://youtu.be/23KXysegjK4?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1",background-video-loop="true",background-opacity="0.7"]
+//== Team
 
 
 [.columns]
@@ -7,57 +7,57 @@
 
 [.column.xx-small]
 --
-.Christophe
+.Christophe (UNISTRA)
 image:Figures/team/prudhomm-icon.png[height=150]
 
-.Joubine
+.Joubine (UNISTRA)
 image:Figures/team/aghili-icon.png[height=150]
 --
 [.column.xx-small]
 --
-.Vincent
+.Vincent (UNISTRA)
 image:Figures/team/vincentchabannes-icon.png[height=150]
 
-.Thibaut
+.Thibaut (INRIA)
 image:Figures/team/metivet-icon.png[height=150]
 --
 [.column.xx-small]
 --
-.Marcela
+.Marcela (UPARIS)
 image:Figures/team/szopos-icon.png[height=150]
 
-.Thomas
+.Thomas (UNISTRA)
 image:Figures/team/saigre-icon.png[height=150]
 --
 [.column.xx-small]
 --
-.Zohra
+.Zohra (UNISTRA)
 image:Figures/team/zohra-icon.png[height=150]
 
-.Samake
+.Abdoulaye (USTTB)
 image:Figures/team/samake-icon.png[height=150]
 --
 [.column.xx-small]
 --
-.Luca
+.Luca (UNISTRA)
 image:Figures/team/berti-icon.png[height=150]
 
-.Céline
+.Céline (UNISTRA)
 image:Figures/team/vanlandeghem-icon.png[height=150]
 --
 [.column.xx-small]
 --
-.Christophe
+.Christophe (CNRS/LNCMI)
 image:Figures/team/trophime-icon.png[height=150]
 
-.Jeremie
+.Jeremie (CNRS/LNCMI)
 image:Figures/team/muzet-icon.png[height=150]
 --
 [.column.xx-small]
 --
-.Laetitia
+.Laetitia (INRIA)
 image:Figures/team/giraldi-icon.jpeg[height=150]
 
-.Zakaria
+.Zakaria (INRIA)
 image:Figures/team/elkhiyati-icon.png[height=150]
 --

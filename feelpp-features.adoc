@@ -1,0 +1,54 @@
+
+=== Versatile
+
+[.col2]
+--
+image:Figures/feelpp/Gallery-feelpp-600x600.jpg[rounded]
+--
+[.col2,center]
+--
+A large range of *numerical methods* to solve partial differential
+equations: cG, dG, hdG, crb, ... in 1D, 2D and 3D
+--
+
+=== Powerful
+
+[.col2]
+--
+image:Figures/feelpp/supercomputer-1-600x600.jpg[rounded]
+--
+[.col2.small,center]
+--
+Support for *high performance computing* up to thousands of cores
+
+- Linear and non-linear problems using  *PETSc/SLEPc* 
+- *InHouse* solution strategies.
+- MPI based with multithreading support
+- Seamless low level linear algebra and parallel
+treatment hidden but customizable with API
+- Hybrid computing (started)
+- Flexible constructions of preconditioners (fieldsplit)
+--
+
+// === Expressive
+
+
+[%notitle]
+=== Architecture of the library 
+
+image::arch.png[background,size=contain]
+
+[.columns]
+=== Mathematical language for scientific computing
+
+[.column]
+--
+* to communicate between disciplines (Math, CS, Physics, Engineering...)
+* to break complexity
+* **Usage**: Research, R&D, Teaching
+* A wide range of numerical methods, many examples and tests
+--
+[.column]
+--
+image:Figures/feelpp/feelpp-methods.png[image]
+--

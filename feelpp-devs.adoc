@@ -1,0 +1,129 @@
+[.lightbg,background-image="Figures/feelpp/Gallery-feelpp-600x600.jpg",background-opacity="0.7"]
+=== {feelpp} Recent Developments
+
+.Some recent features
+[.col2.xx-small]
+--
+[source.small,cpp]
+----
+// Named Arguments
+auto Xh=Pch<1>(_mesh=mesh); <1>
+auto u = Xh->element();
+// expression handling
+auto e3 = expr( "2*x*u*v:x:u:v" ); <2>
+auto e3v = expr( e3, symbolExpr( "u", dxv( u ) ), symbolExpr( "v", Nx() ) );
+// remeshing in seq and //
+auto rm = remesh(_mesh=mesh,_params=<remeshing specs in json>); <3>
+// Fast marching : compute distance to range
+auto distToBoundary = distanceToRange( _space=Vh, _range=boundaryfaces( mesh ) ); <4>
+auto distToBoundaryNarrowBand = <5>
+   distanceToRange( _space=Vh, _range=boundaryfaces( mesh ), 
+                    _max_distance=3.*mesh->hAverage() );
+----
+<1> *Expressivity:* using our own named arguments library 
+<2> *Expressions handling:* based on Ginac, handles _automatic differentiation_, _JIT compilation_
+<3> Remeshing in seq and parallel
+<4> Versatile levelset/fast marching framework
+<5> Narrow band FMM
+--
+[.cols.xx-small]
+--
+.Expression framework and Automatic differentiation
+[source,cpp]
+----
+auto mesh = loadMesh<Mesh<Simplex<3,1>>();
+auto Vh = Pch<2>( mesh ); <1>
+auto u = Vh->element( inner(P()) ); <2>
+auto e1 = expr( "u*u:u"); <3>
+auto e2 = expr( "2*e1:e1");
+auto e3base = expr( "3*e2:e2");
+// handle composition
+auto e3 = expr( e3base, symbolExpr("e1",e1), symbolExpr("e2",e2), symbolExpr("u",inner(P()) )); <4>
+auto grad_e3 = grad<3>( e3 ); <5>
+auto diff_e3_x_exact = 3*4*inner(P())*2*Px();
+auto diff_e3_y_exact = 3*4*inner(P())*2*Py();
+auto diff_e3_z_exact = 3*4*inner(P())*2*Pz();
+auto grad_e3_exact = trans(vec(diff_e3_x_exact,diff_e3_y_exact,diff_e3_z_exact));
+// compute error (machine error expected)
+double error_grad_e3 = normL2(_range=elements(mesh),_expr= grad_e3 - grad_e3_exact ); <6>
+----
+<1> create stem:[P^2_{c,h}] 
+<2> create an element of Vh such that stem:[u(x)=x^T x]
+<3> create expressions 
+<4> define symbols in expressions 
+<5> differentiate the expressions
+<6> compute stem:[L^2] error norm
+--
+
+[.lightbg,background-image="Figures/feelpp/Gallery-feelpp-600x600.jpg",background-opacity="0.7"]
+=== {feelpp} Recent Developments:: Python
+
+[.col2.xx-small]
+--
+.{feelpp} in Python
+[source,python]
+----
+import feelpp
+from feelpp.operators import *
+
+mesh= feelpp.load(m, mesh_name, 0.1)
+Xh = feelpp.functionSpace(mesh=mesh)
+v=Xh.element()
+v.on(range=feelpp.elements(mesh), expr=feelpp.expr("1"))
+e_meas = mesh.measure()
+M=mass(test=Xh,trial=Xh,range=feelpp.elements(mesh)) 
+assert(abs(M.energy(v,v)-e_meas)<1e-10)
+S=stiffness(test=Xh,trial=Xh,range=feelpp.elements(mesh))
+assert(S.energy(v,v)<1e-10)
+v.on(range=feelpp.elements(mesh), expr=feelpp.expr("x+y:x:y"))
+assert(abs(S.energy(v,v)-2*e_meas)<1e-10)
+----
+
+.Other Features
+* WIP: DSEL for Galerkin methods in Python like in {cpp}
+* WIP: MOR integration in complex workflows
+* Parallel execution of toolboxes
+** Advanced parametric studies including UQ (see MS57)
+** Reinforcement learning for micro-swimming (see MS96)
+** Ensemble kalman filter in applications with sensors
+--
+
+.{feelpp} Toolboxes in Python
+[source.col2.x70-small,python]
+----
+import feelpp
+from feelpp.toolboxes.core import *
+from feelpp.toolboxes.fluid import *
+from feelpp.toolboxes.heat import *
+
+def simulate(toolbox, export=True, buildModelAlgebraicFactory=True,data=None):
+    toolbox.init(buildModelAlgebraicFactory)
+    #toolbox.printAndSaveInfo()
+    if toolbox.isStationary():
+        toolbox.solve()
+        if export:
+            toolbox.exportResults()
+    else:
+        if not toolbox.doRestart():
+            toolbox.exportResults(toolbox.timeInitial())
+        toolbox.startTimeStep()
+        while not toolbox.timeStepBase().isFinished():
+            if feelpp.Environment.isMasterRank():
+                print("time simulation: {}s/{}s with step: {}".format(toolbox.time(),toolbox.timeFinal(),toolbox.timeStep()))
+            toolbox.solve()
+            if export:
+                toolbox.exportResults()
+            toolbox.updateTimeStep()
+    return not toolbox.checkResults()
+
+ht = heat(dim=3,order=1)
+ok=simulate(ht)
+meas = ht.postProcessMeasures().values()
+df=pd.DataFrame([meas])
+# do something with the pandas dataframe
+....
+
+cfd=fluid(dim=3,order=2)
+ok=simulate(cfd)
+....
+----

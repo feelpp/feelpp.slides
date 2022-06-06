@@ -1,10 +1,11 @@
 :feelpp: Feel++
+:cpp: C++
 :revealjs_customtheme: css/sky.css
 :customcss: css/presentation.css
 :source-highlighter: highlightjs
 :highlightjs-theme: css/atom-one-light.css
 = The Feel++ software: automation, code generation, applications
-:author: Christophe Prud'homme <christophe.prudhomme@cemosis.fr>
+:author: Christophe Prud'homme -- University of Strasbourg
 :date: 2022-06-06
 :icons: font
 :stem: latexmath
@@ -20,7 +21,7 @@
 :revealjs_width: 1280
 :revealjs_height: 720
 :revealjs_history: true
-//:revealjs_autoSlide: 5000
+//:revealjs_autoSlide: 10000
 :revealjs_history: true
 :revealjs_fragmentInURL: true
 :revealjs_viewDistance: 5
@@ -51,6 +52,20 @@ include::feelpp.adoc[]
 include::feelpp-cfpdes.adoc[]
 
 include::feelpp-hdg.adoc[]
+
+[.decentlightbg]
+== Final Words
+
+[%notitle]
+[.decentlightbg]
+=== Final words
+
+* {feelpp} as a service
+* Streamline complex workflows for advanced usage/studies
+** data assimilation, 
+** machine learning, 
+** UQ on complex models
+** ...
 
 [pass]
 ++++

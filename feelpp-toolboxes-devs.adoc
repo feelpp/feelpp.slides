@@ -1,0 +1,183 @@
+== Toolboxes Anatomy and Recent Developments
+
+[.columns]
+=== Toolboxes :: Setup
+
+[.column.x-small]
+--
+.JSON file structure
+* Models and physical properties
+* Parameters
+* Mesh
+* Material properties
+* Boundary/Initial conditions
+* Post-processing
+* Checks (testsuite,benchmarks,...)
+
+.HifiMagnets (MS57)
+* Design High Field Magnets up to stem:[37T]
+* Automated generation linked to material database using templating
+* Full design simulation toolchain generation (2DAxi and 3D)
+--
+
+[column.x70-small.is-two-thirds]
+--
+.Plane channel turbulence testcase (Spalart-Allmaras) - link:https://github.com/feelpp/feelpp/tree/develop/toolboxes/fluid/cases/turbulence-plane-channel[Github]
+[source,json]
+----
+{ "Name": "turbulence-plane-channel",
+  "ShortName": "turbulence-plane-channel",
+  "Models": {
+    "fluid": {
+      "equations": "Navier-Stokes",
+      "turbulence": {
+        "enable": 1,
+        "model": "Spalart-Allmaras"}}},
+  "Parameters": {
+    "umax": 15.6,
+    "tfix": 0.01,
+    "chi": "t<tfix:t:tfix",
+    "umax_inlet": "umax:umax",
+    "H": 0.0635,
+    "Re": 32000},
+  "Materials": {
+    "Omega": {
+      "rho": "1",
+      "mu": "(rho*umax*(H/2))/Re:rho:umax:H:Re"}},
+  "BoundaryConditions": {
+    "velocity": {
+      "Dirichlet": {
+        "Gamma4": {
+          "expr": "{ umax_inlet*(2*fluid_dist2wall/H)^(1/7),0 }:umax_inlet:fluid_dist2wall:H",
+          "turbulence_bc": "inlet"},
+        "walls": {
+          "markers": ["Gamma1","Gamma3"],
+          "expr": "{0,0}",
+          "turbulence_bc": "wall"}}},
+    "pressure": {
+      "Dirichlet": {
+        "Gamma2": {
+          "expr": "1.2"   }}},
+    "AAfluid": {
+      "outlet": {
+        "outlet": {
+          "expr": "0"}}}},
+  "PostProcess": {
+    "Exports": {
+      "fields": ["velocity","pressure"],
+      "expr": {
+        "dist2wall": "fluid_dist2wall:fluid_dist2wall",
+        "mu_t": "materials_mu_t:materials_mu_t",
+        "curl_U_magnitude": "fluid_curl_U_magnitude:fluid_curl_U_magnitude",
+        "SA_nu": "fluid_turbulence_SA_nu:fluid_turbulence_SA_nu" }}}}
+----
+--
+
+// [.notes]
+// --
+// By using the Feel++-toolboxes libraries, C++ developers can
+// modify/extend the weak formulation associated to a toolbox.
+// --
+
+//[.lightbg,background-video="videos/keyboard.mp4",background-video-loop="true",background-opacity="0.7"]
+//== Toolboxes :: PostProcessing
+
+[.columns]
+=== Toolboxes :: PostProcessing 
+// Common post-processing tools :
+
+[.column.x-small]
+--
+.Postprocessing Features
+* Compute quantities based on expressions
+* Export data/results to visualisation software 
+* Statistics : mean, max, min, integrals
+* Norms (w/ range support) : stem:[\|\cdot\|_{L^2}, \|\cdot\|_{H^1}, \|\nabla(\cdot)\|_{L^2}]
+* Evaluation at points, cut lines and cut planes
+* Specific toolbox outputs: eg. flow rates, stresses, fluxes...
+--
+[.column.x-small]
+--
+.PostProcessing Example
+[source,json]
+----
+"PostProcess": { "heat" {
+    "Exports": {
+        "fields":["temperature","pid"]
+    },
+    "Measures": {
+        "Normal-Heat-Flux": {
+            "%1%": {
+                "markers":"%1%",
+                "direction":"outward",//"inward",
+                "index1":["Interior_wall","Exterior_wall"] } },
+        "Statistics": {
+            "temperature_%1%": {
+                "type":["min","max"],
+                "field":"temperature",
+                "markers":"%1%",
+            "index1":["Interior_wall","Exterior_wall"] }} 
+        },
+    "tolerance":1e-1
+    }
+}
+----
+--
+
+// ===  Specific post-processing tools adapted to the physics :
+//
+//* Heat : normal-heat-flux, ...
+//* CFD : forces, flow rate, ...
+//* CSM : von-mises-criterion, tresca-criterion, principal-stress, ...
+//* ...
+
+
+
+// === Toolboxes :: Run
+// 
+// [.decentlightbg.small]
+// --
+// * Each toolbox is associated to an executable which can be run in
+// sequential or parallel (MPI).
+// * Restart a simulation at specific time or expand the final time
+// * Output files :
+// ** Post-processing files : CSV, EnsightGold, HDF5, VTK, ...
+// ** Simulation Journal : .adoc, .json
+// ** Can be automatically uploaded on data server (Girder) during the
+// simulation
+// 
+// * Choice of preconditioner : GAMG, PCD, PMM, GASM, ...
+// * Mesh partitioning (multiphysics with different support)
+// --
+
+
+[%notitle]
+[.columns]
+=== Some Recent Developments
+
+[.column.x-small]
+--
+.Falling disk in parallel
+video::7y8PTrel15s[youtube,options="autoplay,loop",height=600]
+--
+
+[.column.small]
+--
+.Recent developments and features
+* **Core:** Mesh adaptation (event based)
+* **Core:** Repartitioning
+* **Fluid:** Rigid and Elastic moving bodies
+* **All Toolboxes:** Plugin system in {cpp} and Python
+
+.WIP
+* *Time discretisation:* parareal with possibility to accelerate with MOR
+* *Scenarii:* setup complex workflows in {cpp} (already doable in Python)
+--
+
+//[.column.small]
+//--
+//[source,json]
+//----
+//
+//----
+//--
