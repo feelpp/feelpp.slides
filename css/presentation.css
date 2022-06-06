@@ -140,6 +140,15 @@ SECTION .title {
 .xxx-small p, .xxx-small li, p.xxx-small, div.xxx-small, span.xxx-small, .xxx-small code, .xxx-small TABLE, .xxx-small TH {
     font-size: 50% !important;
 }
+.x60-small p, .x60-small li, p.x60-small, div.x60-small, span.x60-small, .x60-small code, .x60-small TABLE, .x60-small TH {
+    font-size: 60% !important;
+}
+.x65-small p, .x65-small li, p.x65-small, div.x65-small, span.x65-small, .x65-small code, .x65-small TABLE, .x65-small TH {
+    font-size: 65% !important;
+}
+.x70-small p, .x70-small li, p.x70-small, div.x70-small, span.x70-small, .x70-small code, .x70-small TABLE, .x70-small TH {
+    font-size: 70% !important;
+}
 .small LI P {
   margin: 12px 0;
 }
@@ -169,7 +178,12 @@ SECTION .title {
   background: none;
   border: none;
   box-shadow: none; }
-
+.img.rounded {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
 /* Plain Images ohne Buzz */
 .reveal img.flag {
   margin: 0;
