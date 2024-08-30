@@ -5,23 +5,23 @@ on: [push]
 jobs:
 
   build_docs:
-    runs-on: self-ubuntu-20.04
+    runs-on: self-ubuntu-24.04
     name: Build, Install, Package slides
 #    if: "!contains(github.event.head_commit.message, 'docs skip')"
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Install credentials
       run: echo https://$GITHUB_OAUTH:@github.com > $HOME/.git-credentials
       env:
         GITHUB_OAUTH: ${{ secrets.DOCS_GITHUB_KEY }}
     - name: Build
       run: |
-        bundle2.7 install --path vendor/bundle   
-        ./render bundle2.7
+        bundle install --path vendor/bundle   
+        ./render bundle
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
           # target-folder: ${GITHUB_REF##*/}
-          FOLDER: build # The folder the action should deploy.
+          folder: build # The folder the action should deploy.
