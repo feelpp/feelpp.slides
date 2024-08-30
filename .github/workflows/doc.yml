@@ -5,7 +5,7 @@ on: [push]
 jobs:
 
   build_docs:
-    runs-on: self-ubuntu-24.04
+    runs-on: self-ruby
     name: Build, Install, Package slides
 #    if: "!contains(github.event.head_commit.message, 'docs skip')"
     steps:
