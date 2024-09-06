@@ -79,7 +79,7 @@ include::feelpp-hdg.adoc[]
 .Links
 * icon:code-branch[Github] link:https://github.com/feelpp/feelpp[github.com/feelpp/feelpp]
 * icon:book[Docs] link:https://docs.feelpp.org[docs.feelpp.org]
-* icon:twitter[Twitter] https://twitter.com/feelpp[*@feelpp*]
+* icon:linkedin[LinkedIn] https://www.linkedin.com/company/feelpp[*@feelpp*]
 --
 [pass]
 ++++
