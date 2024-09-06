@@ -457,8 +457,8 @@ S=stiffness(test=Xh,trial=Xh,range=feelpp.elements(mesh))
 assert(S.energy(v,v)&lt;1e-10)
 v.on(range=feelpp.elements(mesh), expr=feelpp.expr("x+y:x:y"))
 assert(abs(S.energy(v,v)-2*e_meas)&lt;1e-10)</code></pre></div></div>
-<div class="ulist"><div class="title">Other Features</div><ul><li><p>WIP: DSEL for Galerkin methods in Python like in C&#43;&#43;</p></li><li><p>WIP: MOR integration in complex workflows</p></li><li><p>Parallel execution of toolboxes</p><div class="ulist"><ul><li><p>Advanced parametric studies including UQ (see MS57)</p></li><li><p>Reinforcement learning for micro-swimming (see MS96)</p></li><li><p>Ensemble kalman filter in applications with sensors</p></li></ul></div></li></ul></div></div></div>
-<div class="listingblock col2 x70-small"><div class="title">{feelpp} Toolboxes in Python</div><div class="content"><pre class="highlight"><code class="language-python" data-lang="python">import feelpp
+<div class="ulist"><div class="title">Other Features</div><ul><li><p>Parallel execution of toolboxes</p><div class="ulist"><ul><li><p>Advanced multi-physics simulations</p></li><li><p>Advanced parametric studies including UQ</p></li><li><p>Reinforcement learning for micro-swimming</p></li><li><p>Ensemble Runs</p></li><li><p>Ensemble kalman filter in applications with sensors</p></li></ul></div></li></ul></div></div></div>
+<div class="listingblock col2 x70-small"><div class="title">{feelpp} Toolboxes in Python</div><div class="content"><pre class="highlight"><code class="language-python" data-lang="python">import feelpp.core as fppc
 from feelpp.toolboxes.core import *
 from feelpp.toolboxes.fluid import *
 from feelpp.toolboxes.heat import *
