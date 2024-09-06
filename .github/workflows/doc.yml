@@ -14,6 +14,7 @@ jobs:
       with:
         repository: 'hakimel/reveal.js.git'
         fetch-depth: 1
+        path: 'reveal.js'
         ref: '3.9.2'
 
     - name: Install credentials
@@ -22,7 +23,8 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.DOCS_GITHUB_KEY }}
     - name: Build
       run: |
-        bundle install --path vendor/bundle   
+        bundle config set --local path 'vendor/bundle'
+        bundle install
         ./render bundle
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
