@@ -158,7 +158,10 @@
 [.column.x-small]
 --
 .Falling disk in parallel
-video::7y8PTrel15s[youtube,options="autoplay,loop",height=600]
+video::7y8PTrel15s[youtube,options="autoplay,loop",height=300]
+
+.Falling ellipsoid in parallel
+video::WrTMABoD-a8[youtube,options="autoplay,loop",height=300]
 --
 
 [.column.small]

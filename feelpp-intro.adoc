@@ -1,3 +1,4 @@
+:stem: latexmath
 [.lightbg,background-image="Figures/feelpp/Gallery-feelpp-600x600.jpg",background-opacity="0.7"]
 === {feelpp} Core Library
 
@@ -29,7 +30,11 @@ a.solve( _rhs = l, _solution = u );
 --
 .General Features
 * A large range of **numerical methods** to solve PDEs: cG, dG, hdG, rb/mor, ... 
+* Finite Elements: stem:[L^2], stem:[\mathbf{L}^2], stem:[\mathbb{L}^2], stem:[H^1], stem:[\mathbf{H}^1], stem:[\mathbb{H}^1], stem:[\mathbf{H}(\text{div})], stem:[\mathbf{H}(\text{curl})], ...
+* Value types: single, double, double double, quad double, mp precision and complex...
 * 0D+t, 1D(+t), 2D(+t), 3D(+t)
 * DSEL for Galerkin methods in {cpp} 
+* Linear algebra: PETSc/SLEPc, Eigen, Boost::ublas ...
 --
+
 

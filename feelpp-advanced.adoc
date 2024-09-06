@@ -1,0 +1,30 @@
+=== Ensemble runs
+
+
+[.col2.small,center]
+--
+[source.xx-small,cpp]
+----
+using namespace Feel;
+auto Vh = Pch<4>( mesh, markedelements(mesh, expr("<...>")) );
+int nsplit = ioption("ensemble.split");
+auto [color, w, wglob] = Environment::worldCommPtr()->split( nsplit );
+using toolbox_t = FeelModels::Heat< Simplex<2,1>, Lagrange<1, Scalar,Continuous,PointSetFekete> >;
+fs::path ensembleRepo = fmt::format( "{}/ensemble/{}_{}/{}/", Environment::appRepository(), Environment::numberOfProcessors(), nsplit, color );
+fs::path ensembleRepoExpr = fmt::format( "{}/ensemble/{}_{}/{}/exprs/", Environment::appRepository(), Environment::numberOfProcessors(), nsplit, color );
+LOG(INFO) << "ensembleRepo = " << ensembleRepo.string();
+w->print( fmt::format( "[rank {}] ensemble repo : {}\n", w->rank(), ensembleRepo ), FLAGS_v > 0, FLAGS_v > 0, FLAGS_v > 0 );
+auto toolbox = toolbox_t::New( _prefix = "heat", _worldcomm = w,
+                                _repository = Feel::FeelModels::ModelBaseRepository( ensembleRepo.string(),false, ensembleRepoExpr ) );
+if ( toolbox->isStationary() )
+    toolbox->setTimeFinal( 10 * toolbox->timeStep() );
+execute( toolbox, _verbose=1, _save=false );
+----
+--
+[.col2.small,center]
+--
+.Ensemble runs
+* Ensemble runs with {feelpp} are seamless
+* The code snippet shows how to run an ensemble of heat toolbox
+* However, this goes throughout the Feel++ library thanks to the parallel communicator systems
+--

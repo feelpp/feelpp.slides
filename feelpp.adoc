@@ -3,18 +3,26 @@
 [.lightbg.columns] 
 === What is {feelpp} ?
 
-[.column.x-small]
+[.col2.xx-small]
 --
 .Overview
 * Framework to solve problems based on ODE and PDE
-* {cpp}17 (WIP {cpp}20) with a Python layer using Pybind11
-* Seamless parallelism with default communicator 
-* *DevOps:* CI/CD (docker + ubuntu/debian packaging)
-* *Tests:* Hundreds of tests run in sequential and parallel {cpp} and Python
+* {cpp}17 and {cpp}20 
+* Python layer using Pybind11
+* Seamless parallelism with default communicator including ensemble runs
+* Powerful interpolation and integration operators working in parallel
+* Advanced Post-processing including for high order approximation and high order geometry
+* *Build*: CMake and CMake Presets
+* *Docs:* https://docs.feelpp.org including dynamic pages that can be downloaded as notebooks
+* *DevOps:* 
+** *GitHub Actions:* CI/CD and Continuous Benmarking on inHouse and EuroHPC systems
+** *Packaging:* Ubuntu/Debian, spack, MacPort
+** *Containers:* Docker,  Apptainer
+* *Tests:* About a thousand  tests  in sequential and parallel {cpp} and Python
 * *Usage:* Research, R&D, Teaching, _Services_
 --
 
-[.column.x-small.is-two-thirds]
+[.col2.x-small.is-two-thirds]
 --
 //.{feelpp} Stack
 image::arch.png[image,height=700]
@@ -86,13 +94,17 @@ image:Figures/feelpp/applications/OMVS-scheme-with-results.png[image,height=100]
 
 include::feelpp-intro.adoc[]
 
+//include::feelpp-features.adoc[]
+
+
 include::feelpp-devs.adoc[]
 
-//include::feelpp-toolboxes.adoc[]
+include::feelpp-toolboxes.adoc[]
 
 include::feelpp-toolboxes-devs.adoc[]
 
-
+//== Some Feel++ Advanced Features
+//include::feelpp-advanced.adoc[]
 
 
 

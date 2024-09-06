@@ -9,7 +9,7 @@
 [latexmath]
 ++++
 \begin{aligned}
-\mathbf{j} + \mathcal{K} \nabla p &= 0 & \text{ in } \Omega \\
+\mathbf{j} + \mathbf{K} \nabla p &= 0 & \text{ in } \Omega \\
 \nabla \cdot \mathbf{j} &= f & \text{ in } \Omega \\
 p &= 0 & \text{ on } \Gamma_D  \\
 \mathbf{j} \cdot \mathbf{n} &= g_N & \text{ on } \Gamma_N
@@ -24,7 +24,7 @@ p &= 0 & \text{ on } \Gamma_D  \\
 [latexmath.small]
 ++++
 \begin{aligned}
-\mathcal{A} \underline{\boldsymbol{\sigma}}-\underline{\boldsymbol{\epsilon}}(\boldsymbol{u})&=0 \quad \text { in } \Omega \subset \mathbb{R}^{d},\\
+\mathbf{A} \underline{\boldsymbol{\sigma}}-\underline{\boldsymbol{\epsilon}}(\boldsymbol{u})&=0 \quad \text { in } \Omega \subset \mathbb{R}^{d},\\
 \nabla \cdot \underline{\boldsymbol{\sigma}}&=\boldsymbol{f} \quad \text { in } \Omega,\\
 \boldsymbol{u}&=\boldsymbol{g} \text { on } \partial \Omega .
 \end{aligned}
@@ -100,36 +100,36 @@ p&=\text{constant but unknown}
 [.column.x-small]
 --
 .Notations
-* latexmath:[$\mathcal{T}_h$] the
+* latexmath:[$\mathbf{T}_h$] the
 collection of elements latexmath:[$K$] such that
-latexmath:[$\Omega = \bigcup_{K\in \mathcal{T}_h} K$].
-* latexmath:[$h:= max_{K \in \mathcal{T}_h} h_K$],
+latexmath:[$\Omega = \bigcup_{K\in \mathbf{T}_h} K$].
+* latexmath:[$h:= max_{K \in \mathbf{T}_h} h_K$],
 latexmath:[$\partial K$] the boundary of latexmath:[$K$] with its
 measure latexmath:[$|F|$]
 * latexmath:[$\mathbf{n}_{\partial K}$] is the associated unit outward
 normal vector.
-* The skeleton of latexmath:[$\mathcal{T}_h$] is the collection of all
-the faces of latexmath:[$\mathcal{T}_h$] into the set
-latexmath:[$\mathcal{F}_h$].
-* latexmath:[$\mathcal{F}_h = \mathcal{F}_h^\Gamma \cup \mathcal{F}_h^0, \; \mathcal{F}_h^\Gamma = \mathcal{F}_h^D \cup \mathcal{F}_h^N \cup \mathcal{F}_h^{ibc}$]
+* The skeleton of latexmath:[$\mathbf{T}_h$] is the collection of all
+the faces of latexmath:[$\mathbf{T}_h$] into the set
+latexmath:[$\mathbf{F}_h$].
+* latexmath:[$\mathbf{F}_h = \mathbf{F}_h^\Gamma \cup \mathbf{F}_h^0, \; \mathbf{F}_h^\Gamma = \mathbf{F}_h^D \cup \mathbf{F}_h^N \cup \mathbf{F}_h^{ibc}$]
 --
 
 [.column.x-small]
 --
 //Function spaces Functions belonging to latexmath:[$V_h$] and
 //latexmath:[$W_h$] are, in general, fully discontinuous over
-//latexmath:[$\mathcal{T}_h$], whereas functions in latexmath:[$M_h$] are
-//fully discontinuous on latexmath:[$\mathcal{F}_h$] and single-valued on
-//each face latexmath:[$F \in \mathcal{F}_h$] of the skeleton of
-//latexmath:[$\mathcal{T}_h$].
+//latexmath:[$\mathbf{T}_h$], whereas functions in latexmath:[$M_h$] are
+//fully discontinuous on latexmath:[$\mathbf{F}_h$] and single-valued on
+//each face latexmath:[$F \in \mathbf{F}_h$] of the skeleton of
+//latexmath:[$\mathbf{T}_h$].
 .Function Spaces
-* latexmath:[$V_h = \Pi_{K \in \mathcal{T}_h} V(K), \qquad V(K) = \left[ P_k (K) \right\]^n$]
-* latexmath:[$W_h = \Pi_{K\in\mathcal{T}_h} W(K), \qquad W(K) = \left[ P_k (K) \right\]$]
-* latexmath:[$\widetilde M_h = \{ \mu \in L^2(\mathcal{F}_h): \mu\rvert_F \in
-          P_k(F) \; \forall F \in \mathcal{F}_h \setminus \mathcal{F}_h^{ibc}
+* latexmath:[$V_h = \Pi_{K \in \mathbf{T}_h} V(K), \qquad V(K) = \left[ P_k (K) \right\]^n$]
+* latexmath:[$W_h = \Pi_{K\in\mathbf{T}_h} W(K), \qquad W(K) = \left[ P_k (K) \right\]$]
+* latexmath:[$\widetilde M_h = \{ \mu \in L^2(\mathbf{F}_h): \mu\rvert_F \in
+          P_k(F) \; \forall F \in \mathbf{F}_h \setminus \mathbf{F}_h^{ibc}
           \},$]
-* latexmath:[$M^*_h = \{ \mu \in C^0(\mathcal{F}^{ibc}_h): \mu\rvert_F \in
-          P_0(F) \; \forall F \in \mathcal{F}_h^{ibc} \} \cong
+* latexmath:[$M^*_h = \{ \mu \in C^0(\mathbf{F}^{ibc}_h): \mu\rvert_F \in
+          P_0(F) \; \forall F \in \mathbf{F}_h^{ibc} \} \cong
           \mathbb{R}$]
 * latexmath:[$M_h=\widetilde M_h \oplus M^*_h$]
 --
@@ -145,9 +145,9 @@ and latexmath:[$\hat{p}_h \in M_h$] such that:
 [latexmath]
 ++++
 \begin{aligned}
-\sum_{K\in\mathcal{T}_h} \left[ \left( \mathcal{K}^{-1} \boldsymbol{j}^K_h, \boldsymbol{v}_h^K \right)_K - \left( p_h^K, \nabla\cdot\boldsymbol{v}_h^K \right)_K + \langle \hat{p}_h, \boldsymbol{v}_h^K \cdot {\boldsymbol{n}}_{\partial K}\rangle_{\partial K} \right] = 0 && \forall \boldsymbol{v}_h \in V_h \\
-\sum_{K\in\mathcal{T}_h} \left[ -\left(\boldsymbol{j}_h^K,\nabla w_h^K \right)_K + \langle \hat{\boldsymbol{j}}_h^{\partial K}\cdot {\boldsymbol{n}}_{\partial K}, w_k^K \rangle_{\partial K} \right] = \sum_{K\in\mathcal{T}_h} \left( f, w_h^K \right)_K && \forall w_h \in W_h \\
-\sum_{K\in\mathcal{T}_h} \langle \hat{\boldsymbol{j}}_h^{\partial K} \cdot {\boldsymbol{n}}_{\partial K}, \mu_h \rangle_{\partial K} = \langle g_N, \mu_h \rangle_{\Gamma_N} + I_{target} |\Gamma_{ibc}|^{-1} \langle\mu_h, 1\rangle_{\Gamma_{ibc}} && \forall \mu_h \in M_h\\
+\sum_{K\in\mathbf{T}_h} \left[ \left( \mathbf{K}^{-1} \boldsymbol{j}^K_h, \boldsymbol{v}_h^K \right)_K - \left( p_h^K, \nabla\cdot\boldsymbol{v}_h^K \right)_K + \langle \hat{p}_h, \boldsymbol{v}_h^K \cdot {\boldsymbol{n}}_{\partial K}\rangle_{\partial K} \right] = 0 && \forall \boldsymbol{v}_h \in V_h \\
+\sum_{K\in\mathbf{T}_h} \left[ -\left(\boldsymbol{j}_h^K,\nabla w_h^K \right)_K + \langle \hat{\boldsymbol{j}}_h^{\partial K}\cdot {\boldsymbol{n}}_{\partial K}, w_k^K \rangle_{\partial K} \right] = \sum_{K\in\mathbf{T}_h} \left( f, w_h^K \right)_K && \forall w_h \in W_h \\
+\sum_{K\in\mathbf{T}_h} \langle \hat{\boldsymbol{j}}_h^{\partial K} \cdot {\boldsymbol{n}}_{\partial K}, \mu_h \rangle_{\partial K} = \langle g_N, \mu_h \rangle_{\Gamma_N} + I_{target} |\Gamma_{ibc}|^{-1} \langle\mu_h, 1\rangle_{\Gamma_{ibc}} && \forall \mu_h \in M_h\\
 \hat{\mathbf j}_h^{\partial K} = \mathbf j_h^K + \tau_K(p_h^K - \hat{p_h}^{\partial K})\mathbf n && \forall\partial K,
 \end{aligned}
 ++++
@@ -174,8 +174,8 @@ auto ibc_mesh = createSubmesh( mesh, markedfaces(mesh,"Ibc*")); <4>
 ----
 <1> load mesh
 <2> build set of non ibc facets 
-<3> latexmath:[\mathcal{F}_h^{ibc}] and
-<4> latexmath:[\mathcal{F}_h\setminus\mathcal{F}_h^{ibc}].
+<3> latexmath:[\mathbf{F}_h^{ibc}] and
+<4> latexmath:[\mathbf{F}_h\setminus\mathbf{F}_h^{ibc}].
 --
 //[.refs.xx-small]
 //--

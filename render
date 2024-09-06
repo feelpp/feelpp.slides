@@ -11,6 +11,8 @@ for SRCFILE in *.adoc; do
 echo "Rendering $SRCFILE"
 
 $BUNDLE exec asciidoctor-revealjs -r asciidoctor-diagram  -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2  $SRCFILE
+#$BUNDLE exec asciidoctor-revealjs -r asciidoctor-diagram    $SRCFILE
+#npx asciidoctor-revealjs -r asciidoctor-diagram  -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.1.2  $SRCFILE
 base=`basename $SRCFILE .adoc`
 #echo "Starting Webserver on :8000"
 #python -m SimpleHTTPServer >/dev/null 2>&1 & 
@@ -30,4 +32,5 @@ if test -d build; then rm -rf build; fi
 mkdir build
 cp -r css fonts images videos build
 mv *.html build
-git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git build/reveal.js
+cd build && ln -s ../reveal.js
+#git clone -b 3.9.2 --depth 1 https://github.com/hakimel/reveal.js.git build/reveal.js

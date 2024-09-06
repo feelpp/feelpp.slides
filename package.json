@@ -10,10 +10,10 @@
     "serve": "node-srv -p 8011 build/"
   },
   "devDependencies": {
-    "@asciidoctor/reveal.js": "^4.1",
-    "@antora/cli": "^3.0.1",
-    "@antora/site-generator-default": "^3.0.0",
-    "@feelpp/asciidoctor-remote-include-processor": "^0.0.6",
+    "@asciidoctor/reveal.js": "~4.1",
+    "@antora/cli": "^3.1.9",
+    "@antora/site-generator-default": "^3.1.9",
+    "@feelpp/asciidoctor-extensions": "^1.0.0-rc.11",
     "@djencks/asciidoctor-template": "^0.0.3",
     "asciidoctor-kroki": "^0.15.4",
     "asciidoctor-emoji": "^0.3.4",

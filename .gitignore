@@ -3,3 +3,6 @@ vendor
 build
 *.html
 .bundle
+cahn-hilliard/
+diffusion-nl/
+old/

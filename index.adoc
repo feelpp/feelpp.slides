@@ -45,7 +45,7 @@
 :iconfont-remote!:
 :iconfont-name: fonts/fontawesome/css/all
 
-include::feelpp-team.adoc[]
+//include::feelpp-team.adoc[]
 
 include::feelpp.adoc[]
 
@@ -66,13 +66,13 @@ include::feelpp-hdg.adoc[]
 * Develop {feelpp} as a service
 * Streamline complex workflows for advanced usage/studies
 ** data assimilation, 
-** machine learning, 
-** UQ on complex models
+** machine learning (interface with Scimba and Scikit-learn), 
+** UQ on complex models (interface with OpenTURNs)
 ** ...
 * Go Digital twins
-** Building energy modeling
-** High field magnets 
-** Eye
+** Building energy modeling (Ktirio Urban Building - CoE Hidalgo2)
+** High field magnets (LNCMI)
+** Eye (Eye2Brain)
 --
 [.column.small]
 --
