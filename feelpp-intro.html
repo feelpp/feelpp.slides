@@ -417,7 +417,20 @@ a = integrate( _range = elements( support( Vh ) ),
 a += integrate( _range = markedfaces( support( Vh ), "Robin" ), _expr = r_1*idt(u)*id(v));
 a += on( _range = markedfaces( support(Vh), "Dirichlet" ), _rhs=l, _element=u, _expr = g );
 a.solve( _rhs = l, _solution = u );</code></pre></div></div></div></div>
-<div class="openblock col2 small"><div class="content"><div class="ulist"><div class="title">General Features</div><ul><li><p>A large range of <strong>numerical methods</strong> to solve PDEs: cG, dG, hdG, rb/mor, &#8230;&#8203;</p></li><li><p>Finite Elements: \(L^2\), \(\mathbf{L}^2\), \(\mathbb{L}^2\), \(H^1\), \(\mathbf{H}^1\), \(\mathbb{H}^1\), \(\mathbf{H}(\text{div})\), \(\mathbf{H}(\text{curl})\), &#8230;&#8203;</p></li><li><p>Value types: single, double, double double, quad double, mp precision and complex&#8230;&#8203;</p></li><li><p>0D+t, 1D(+t), 2D(+t), 3D(+t)</p></li><li><p>DSEL for Galerkin methods in C&#43;&#43;</p></li><li><p>Linear algebra: PETSc/SLEPc, Eigen, Boost::ublas &#8230;&#8203;</p></li></ul></div></div></div></div></section></div></div><script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
+<div class="openblock col2 small"><div class="content"><div class="ulist"><div class="title">General Features</div><ul><li><p>A large range of <strong>numerical methods</strong> to solve PDEs: cG, dG, hdG, rb/mor, &#8230;&#8203;</p></li><li><p>Finite Elements: \(L^2\), \(\mathbf{L}^2\), \(\mathbb{L}^2\), \(H^1\), \(\mathbf{H}^1\), \(\mathbb{H}^1\), \(\mathbf{H}(\text{div})\), \(\mathbf{H}(\text{curl})\), &#8230;&#8203;</p></li><li><p>Value types: single, double, double double, quad double, mp precision and complex&#8230;&#8203;</p></li><li><p>0D+t, 1D(+t), 2D(+t), 3D(+t)</p></li><li><p>DSEL for Galerkin methods in C&#43;&#43;</p></li><li><p>Linear algebra: PETSc/SLEPc, Eigen, Boost::ublas &#8230;&#8203;</p></li></ul></div></div></div></div></section>
+<section id="_feelpp_dsel" class="lightbg" data-background-iframe="https://www.youtube.com/embed/XOGHwCJJ3ek?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1" data-background-opacity="0.7"><h2>{feelpp} DSEL</h2><div class="slide-content"><div class="openblock col2"><div class="content"><div class="listingblock xx-small"><div class="title">Incompressoble Navier Stokes Equations</div><div class="content"><pre class="highlight"><code class="language-cpp" data-lang="cpp">// test strain tensor
+auto def = 0.5*(grad(v)  + trans(grad(v)));
+// trial strain tensor
+auto deft = 0.5*(gradt(u) + trans(gradt(u)));
+// oseen
+form2( _test=Xh, _trial=Xh, _matrix=M) =
+  // automatic quadature
+  integrate( elements(Xh-&gt;mesh()),
+             alpha*trans(idt(u))*id(v)
+             + 2.0*nu*trace(trans(deft)*def)
+             + trans(gradt(u)*idv(beta))*id(v)
+             - div(v)*idt(p) + divt(u)*id(q) );</code></pre></div></div></div></div>
+<div class="openblock col2 small"><div class="content"><div class="ulist"><div class="title">General Features</div><ul><li><p>Advanced DSEL</p></li><li><p>Automatic differentiation</p></li><li><p>Automatic quadrature</p></li><li><p>Automatic assembly</p></li><li><p>Automatic parallelism</p></li></ul></div></div></div></div></section></div></div><script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
   if (slide.getAttribute('data-background-color')) return;
   // user needs to explicitly say he wants CSS color to override otherwise we might break custom css or theme (#226)
   if (!(slide.classList.contains('canvas') || slide.classList.contains('background'))) return;

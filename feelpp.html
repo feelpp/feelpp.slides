@@ -393,7 +393,7 @@ link.rel = 'stylesheet';
 link.type = 'text/css';
 link.href = window.location.search.match( /print-pdf/gi ) ? "https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/pdf.css" : "https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/paper.css";
 document.getElementsByTagName( 'head' )[0].appendChild( link );</script></head><body><div class="reveal"><div class="slides"><section><section id="_feelpp_suite"><h2>{feelpp} Suite</h2></section><section id="_what_is_feelpp" class="lightbg columns"><h2>What is {feelpp} ?</h2><div class="slide-content"><div class="openblock col2 xx-small"><div class="content"><div class="ulist"><div class="title">Overview</div><ul><li><p>Framework to solve problems based on ODE and PDE</p></li><li><p>C&#43;&#43;17 and C&#43;&#43;20</p></li><li><p>Python layer using Pybind11</p></li><li><p>Seamless parallelism with default communicator including ensemble runs</p></li><li><p>Powerful interpolation and integration operators working in parallel</p></li><li><p>Advanced Post-processing including for high order approximation and high order geometry</p></li><li><p><strong>Build</strong>: CMake and CMake Presets</p></li><li><p><strong>Docs:</strong> <a href="https://docs.feelpp.org" class="bare">https://docs.feelpp.org</a> including dynamic pages that can be downloaded as notebooks</p></li><li><p><strong>DevOps:</strong></p><div class="ulist"><ul><li><p><strong>GitHub Actions:</strong> CI/CD and Continuous Benmarking on inHouse and EuroHPC systems</p></li><li><p><strong>Packaging:</strong> Ubuntu/Debian, spack, MacPort</p></li><li><p><strong>Containers:</strong> Docker,  Apptainer</p></li></ul></div></li><li><p><strong>Tests:</strong> About a thousand  tests  in sequential and parallel C&#43;&#43; and Python</p></li><li><p><strong>Usage:</strong> Research, R&amp;D, Teaching, <em>Services</em></p></li></ul></div></div></div>
-<div class="openblock col2 x-small is-two-thirds"><div class="content"><div class="imageblock"><img src="arch.png" alt="image" height="700"></div></div></div></div></section><section id="_applications" class="columns"><h2>Applications</h2><div class="slide-content"><div class="openblock column stretch xxx-small"><div class="content"><div class="paragraph"><div class="title">Health(brain)</div><p><span class="image"><img src="Figures/feelpp/applications/vivabrain.png" alt="image" height="100"></span></p></div>
+<div class="openblock col2 x-small is-two-thirds"><div class="content"><div class="imageblock"><img src="arch-3.png" alt="image" height="700"></div></div></div></div></section><section id="_applications" class="columns"><h2>Applications</h2><div class="slide-content"><div class="openblock column stretch xxx-small"><div class="content"><div class="paragraph"><div class="title">Health(brain)</div><p><span class="image"><img src="Figures/feelpp/applications/vivabrain.png" alt="image" height="100"></span></p></div>
 <div class="paragraph"><div class="title">Health(Tumor cells)</div><p><span class="image"><img src="Figures/feelpp/applications/hemotumpp.png" alt="image" height="100"></span></p></div>
 <div class="paragraph"><div class="title">Industry (ROM,UQ)</div><p><span class="image"><img src="Figures/feelpp/applications/chorus.png" alt="image" height="100"></span></p></div></div></div>
 <div class="openblock column stretch xxx-small"><div class="content"><div class="paragraph"><div class="title">Health(Eye/Brain)</div><p><span class="image"><img src="Figures/feelpp/applications/eye2brain.png" alt="image" height="100"></span></p></div>
@@ -418,7 +418,19 @@ a = integrate( _range = elements( support( Vh ) ),
 a += integrate( _range = markedfaces( support( Vh ), "Robin" ), _expr = r_1*idt(u)*id(v));
 a += on( _range = markedfaces( support(Vh), "Dirichlet" ), _rhs=l, _element=u, _expr = g );
 a.solve( _rhs = l, _solution = u );</code></pre></div></div></div></div>
-<div class="openblock col2 small"><div class="content"><div class="ulist"><div class="title">General Features</div><ul><li><p>A large range of <strong>numerical methods</strong> to solve PDEs: cG, dG, hdG, rb/mor, &#8230;&#8203;</p></li><li><p>Finite Elements: \(L^2\), \(\mathbf{L}^2\), \(\mathbb{L}^2\), \(H^1\), \(\mathbf{H}^1\), \(\mathbb{H}^1\), \(\mathbf{H}(\text{div})\), \(\mathbf{H}(\text{curl})\), &#8230;&#8203;</p></li><li><p>Value types: single, double, double double, quad double, mp precision and complex&#8230;&#8203;</p></li><li><p>0D+t, 1D(+t), 2D(+t), 3D(+t)</p></li><li><p>DSEL for Galerkin methods in C&#43;&#43;</p></li><li><p>Linear algebra: PETSc/SLEPc, Eigen, Boost::ublas &#8230;&#8203;</p></li></ul></div></div></div></div></section><section id="_feelpp_recent_developments" class="lightbg" data-background-image="Figures/feelpp/Gallery-feelpp-600x600.jpg" data-background-opacity="0.7"><h2>{feelpp} Recent Developments</h2><div class="slide-content"><div class="openblock col2 xx-small"><div class="title">Some recent features</div><div class="content"><div class="listingblock small"><div class="content"><pre class="highlight"><code class="language-cpp" data-lang="cpp">// Named Arguments
+<div class="openblock col2 small"><div class="content"><div class="ulist"><div class="title">General Features</div><ul><li><p>A large range of <strong>numerical methods</strong> to solve PDEs: cG, dG, hdG, rb/mor, &#8230;&#8203;</p></li><li><p>Finite Elements: \(L^2\), \(\mathbf{L}^2\), \(\mathbb{L}^2\), \(H^1\), \(\mathbf{H}^1\), \(\mathbb{H}^1\), \(\mathbf{H}(\text{div})\), \(\mathbf{H}(\text{curl})\), &#8230;&#8203;</p></li><li><p>Value types: single, double, double double, quad double, mp precision and complex&#8230;&#8203;</p></li><li><p>0D+t, 1D(+t), 2D(+t), 3D(+t)</p></li><li><p>DSEL for Galerkin methods in C&#43;&#43;</p></li><li><p>Linear algebra: PETSc/SLEPc, Eigen, Boost::ublas &#8230;&#8203;</p></li></ul></div></div></div></div></section><section id="_feelpp_dsel" class="lightbg" data-background-iframe="https://www.youtube.com/embed/XOGHwCJJ3ek?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1" data-background-opacity="0.7"><h2>{feelpp} DSEL</h2><div class="slide-content"><div class="openblock col2"><div class="content"><div class="listingblock xx-small"><div class="title">Incompressoble Navier Stokes Equations</div><div class="content"><pre class="highlight"><code class="language-cpp" data-lang="cpp">// test strain tensor
+auto def = 0.5*(grad(v)  + trans(grad(v)));
+// trial strain tensor
+auto deft = 0.5*(gradt(u) + trans(gradt(u)));
+// oseen
+form2( _test=Xh, _trial=Xh, _matrix=M) =
+  // automatic quadature
+  integrate( elements(Xh-&gt;mesh()),
+             alpha*trans(idt(u))*id(v)
+             + 2.0*nu*trace(trans(deft)*def)
+             + trans(gradt(u)*idv(beta))*id(v)
+             - div(v)*idt(p) + divt(u)*id(q) );</code></pre></div></div></div></div>
+<div class="openblock col2 small"><div class="content"><div class="ulist"><div class="title">General Features</div><ul><li><p>Advanced DSEL</p></li><li><p>Automatic differentiation</p></li><li><p>Automatic quadrature</p></li><li><p>Automatic assembly</p></li><li><p>Automatic parallelism</p></li></ul></div></div></div></div></section><section id="_feelpp_other_features" class="lightbg" data-background-image="Figures/feelpp/Gallery-feelpp-600x600.jpg" data-background-opacity="0.7"><h2>{feelpp} Other features</h2><div class="slide-content"><div class="openblock col2 xx-small"><div class="title">Remeshing, distance to range, fast marching</div><div class="content"><div class="listingblock small"><div class="content"><pre class="highlight"><code class="language-cpp" data-lang="cpp">// Named Arguments
 auto Xh=Pch&lt;1&gt;(_mesh=mesh); <b>(1)</b>
 auto u = Xh-&gt;element();
 // expression handling
@@ -500,77 +512,7 @@ ok=simulate(cfd)
 <section><section id="_toolboxes" class="lightbg" data-background-video="videos/keyboard.mp4" data-background-video-loop data-background-opacity="0.7"><h2>Toolboxes</h2></section><section id="_cfd" class="lightbg" data-background-iframe="https://www.youtube.com/embed/XOGHwCJJ3ek?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1" data-background-opacity="0.7"><h2>CFD</h2><div class="slide-content"><div class="openblock col2"><div class="content"><div class="videoblock"><iframe width="100%" height="480" src="https://www.youtube.com/embed/ZNke5e7ElR4?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
 <div class="openblock col2 small vcenter"><div class="content"><div class="ulist"><div class="title">Features</div><ul><li><p>Navier-Stokes incompressible 2D, 3D</p></li><li><p>Newtonian and non-newtonian</p></li><li><p>Multi-fluid support(levelset)</p></li><li><p>Moving domain support(ale)</p></li><li><p>Rigid and elastic body interaction.</p></li><li><p>Pressure BC.</p></li><li><p>Robust stab. methods.</p></li><li><p>WIP Turbulence Model.</p></li><li><p>Various formulations (e.g. Conservative, Curl, EMAC,&#8230;&#8203;)</p></li></ul></div></div></div></div></section><section id="_csm" class="lightbg columns" data-background-iframe="https://www.youtube.com/embed/SUAqM6liXII?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1" data-background-opacity="0.7"><h2>CSM</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><iframe width="100%" height="480" src="https://www.youtube.com/embed/nfi_xwR-H1k?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
 <div class="openblock column"><div class="content"><div class="ulist"><ul><li><p>Linear elasticity</p></li><li><p>Large deformations, large displacements (Hyper elasticity)</p></li><li><p>Compressible, nearly incompressible materials</p></li><li><p>Multi-material support</p></li></ul></div></div></div></div></section><section id="_heat_transfer" class="lightbg columns center" data-background-iframe="https://www.youtube.com/embed/DWf3OKYT3WE?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1" data-background-opacity="0.9"><h2>Heat Transfer</h2><div class="slide-content"><div class="openblock column"><div class="content"><div class="videoblock"><iframe width="100%" height="480" src="https://www.youtube.com/embed/0AQM4a65Yxw?rel=0&amp;start=4&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
-<div class="openblock column"><div class="content"><div class="ulist"><ul><li><p>2D and 3D heat transfer</p></li><li><p>High order in space and time</p></li><li><p>Diffusion and Convection</p></li><li><p>Robust Stab. Method</p></li><li><p>Thermo-Electric models including Seebeck/Peltier</p></li><li><p>Conjuguate heat transfer</p></li><li><p>RHT: on-going</p></li></ul></div></div></div></div></section></section>
-<section><section id="_toolboxes_configuration_and_recent_developments"><h2>Toolboxes Configuration and Recent Developments</h2></section><section id="_toolboxes_setup" class="columns"><h2>Toolboxes :: Setup</h2><div class="slide-content"><div class="openblock column x-small"><div class="content"><div class="ulist"><div class="title">JSON file structure</div><ul><li><p>Models and physical properties</p></li><li><p>Parameters</p></li><li><p>Mesh</p></li><li><p>Material properties</p></li><li><p>Boundary/Initial conditions</p></li><li><p>Post-processing</p></li><li><p>Checks (testsuite,benchmarks,&#8230;&#8203;)</p></li></ul></div>
-<div class="ulist"><div class="title">HifiMagnets (MS57)</div><ul><li><p>Design High Field Magnets up to \(37T\)</p></li><li><p>Automated generation linked to material database using templating</p></li><li><p>Full design simulation toolchain generation (2DAxi and 3D)</p></li></ul></div></div></div>
-<div class="openblock column x70-small is-two-thirds"><div class="content"><div class="listingblock"><div class="title">Plane channel turbulence testcase (Spalart-Allmaras) - <a href="https://github.com/feelpp/feelpp/tree/develop/toolboxes/fluid/cases/turbulence-plane-channel">Github</a></div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">{ "Name": "turbulence-plane-channel",
-  "ShortName": "turbulence-plane-channel",
-  "Models": {
-    "fluid": {
-      "equations": "Navier-Stokes",
-      "turbulence": {
-        "enable": 1,
-        "model": "Spalart-Allmaras"}}},
-  "Parameters": {
-    "umax": 15.6,
-    "tfix": 0.01,
-    "chi": "t&lt;tfix:t:tfix",
-    "umax_inlet": "umax:umax",
-    "H": 0.0635,
-    "Re": 32000},
-  "Materials": {
-    "Omega": {
-      "rho": "1",
-      "mu": "(rho*umax*(H/2))/Re:rho:umax:H:Re"}},
-  "BoundaryConditions": {
-    "velocity": {
-      "Dirichlet": {
-        "Gamma4": {
-          "expr": "{ umax_inlet*(2*fluid_dist2wall/H)^(1/7),0 }:umax_inlet:fluid_dist2wall:H",
-          "turbulence_bc": "inlet"},
-        "walls": {
-          "markers": ["Gamma1","Gamma3"],
-          "expr": "{0,0}",
-          "turbulence_bc": "wall"}}},
-    "pressure": {
-      "Dirichlet": {
-        "Gamma2": {
-          "expr": "1.2"   }}},
-    "AAfluid": {
-      "outlet": {
-        "outlet": {
-          "expr": "0"}}}},
-  "PostProcess": {
-    "Exports": {
-      "fields": ["velocity","pressure"],
-      "expr": {
-        "dist2wall": "fluid_dist2wall:fluid_dist2wall",
-        "mu_t": "materials_mu_t:materials_mu_t",
-        "curl_U_magnitude": "fluid_curl_U_magnitude:fluid_curl_U_magnitude",
-        "SA_nu": "fluid_turbulence_SA_nu:fluid_turbulence_SA_nu" }}}}</code></pre></div></div></div></div></div></section><section id="_toolboxes_postprocessing" class="columns"><h2>Toolboxes :: PostProcessing</h2><div class="slide-content"><div class="openblock column x-small"><div class="content"><div class="ulist"><div class="title">Postprocessing Features</div><ul><li><p>Compute quantities based on expressions</p></li><li><p>Export data/results to visualisation software</p></li><li><p>Statistics : mean, max, min, integrals</p></li><li><p>Norms (w/ range support) : \(\|\cdot\|_{L^2}, \|\cdot\|_{H^1}, \|\nabla(\cdot)\|_{L^2}\)</p></li><li><p>Evaluation at points, cut lines and cut planes</p></li><li><p>Specific toolbox outputs: eg. flow rates, stresses, fluxes&#8230;&#8203;</p></li></ul></div></div></div>
-<div class="openblock column x-small"><div class="content"><div class="listingblock"><div class="title">PostProcessing Example</div><div class="content"><pre class="highlight"><code class="language-json" data-lang="json">"PostProcess": { "heat" {
-    "Exports": {
-        "fields":["temperature","pid"]
-    },
-    "Measures": {
-        "Normal-Heat-Flux": {
-            "%1%": {
-                "markers":"%1%",
-                "direction":"outward",//"inward",
-                "index1":["Interior_wall","Exterior_wall"] } },
-        "Statistics": {
-            "temperature_%1%": {
-                "type":["min","max"],
-                "field":"temperature",
-                "markers":"%1%",
-            "index1":["Interior_wall","Exterior_wall"] }}
-        },
-    "tolerance":1e-1
-    }
-}</code></pre></div></div></div></div></div></section><section id="_some_recent_developments" class="columns"><div class="slide-content"><div class="openblock column x-small"><div class="content"><div class="videoblock"><div class="title">Falling disk in parallel</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/7y8PTrel15s?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div>
-<div class="videoblock"><div class="title">Falling ellipsoid in parallel</div><iframe width="100%" height="300" src="https://www.youtube.com/embed/WrTMABoD-a8?rel=0&amp;loop=1" frameborder="0" allowfullscreen data-autoplay allow="autoplay"></iframe></div></div></div>
-<div class="openblock column small"><div class="content"><div class="ulist"><div class="title">Recent developments and features</div><ul><li><p><strong>Core:</strong> Mesh adaptation (event based)</p></li><li><p><strong>Core:</strong> Repartitioning</p></li><li><p><strong>Fluid:</strong> Rigid and Elastic moving bodies</p></li><li><p><strong>All Toolboxes:</strong> Plugin system in C&#43;&#43; and Python</p></li></ul></div>
-<div class="ulist"><div class="title">WIP</div><ul><li><p><strong>Time discretisation:</strong> parareal with possibility to accelerate with MOR</p></li><li><p><strong>Scenarii:</strong> setup complex workflows in C&#43;&#43; (already doable in Python)</p></li></ul></div></div></div></div></section></section></div></div><script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
+<div class="openblock column"><div class="content"><div class="ulist"><ul><li><p>2D and 3D heat transfer</p></li><li><p>High order in space and time</p></li><li><p>Diffusion and Convection</p></li><li><p>Robust Stab. Method</p></li><li><p>Thermo-Electric models including Seebeck/Peltier</p></li><li><p>Conjuguate heat transfer</p></li><li><p>RHT: on-going</p></li></ul></div></div></div></div></section></section></div></div><script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
   if (slide.getAttribute('data-background-color')) return;
   // user needs to explicitly say he wants CSS color to override otherwise we might break custom css or theme (#226)
   if (!(slide.classList.contains('canvas') || slide.classList.contains('background'))) return;
