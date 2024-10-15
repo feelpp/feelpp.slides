@@ -23,13 +23,13 @@
 image::cemosis-sw-ecosystem.png[image,height=700]
 //-- 
 
-=== Current Big Projects
+=== Our Current Big Projects
 
 - link:https://numpex.org[PEPR NumPEX] French Exascale project : Project Exa-MA (Methods and Algorithms at Exascale)
-** use Zenodo PEPR NumPEX community
+** use link:https://zenodo.org/communities/numpex[Zenodo PEPR NumPEX community]
 ** use Citation File Format
-** Data: Benchmark data input/output and software
+** Data: Benchmark data input/output and software, example: link:https://zenodo.org/records/13886143[An Exa-MA benchmark dataset]
 - link:https://www.hidalgo2.eu/[CoE Hidalgo2] : Urban Building Energy Modeling
-** use Zenodo Hidalgo2 community
+** use link:https://zenodo.org/communities/hidalgo2[Zenodo Hidalgo2 community]
 ** use Citation File Format
 ** Data: Mesh generation, models and report results
