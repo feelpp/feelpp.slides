@@ -25,8 +25,10 @@
 [.col2.x-small.is-two-thirds]
 --
 //.{feelpp} Stack
-image::arch.png[image,height=700]
+image::arch-3.png[image,height=700]
 --
+
+
 
 //[%notitle]
 //[.lightbg,background-opacity="1"] 
@@ -101,7 +103,7 @@ include::feelpp-devs.adoc[]
 
 include::feelpp-toolboxes.adoc[]
 
-include::feelpp-toolboxes-devs.adoc[]
+//include::feelpp-toolboxes-devs.adoc[]
 
 //== Some Feel++ Advanced Features
 //include::feelpp-advanced.adoc[]

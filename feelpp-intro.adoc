@@ -38,3 +38,34 @@ a.solve( _rhs = l, _solution = u );
 --
 
 
+[.lightbg,background-iframe="https://www.youtube.com/embed/XOGHwCJJ3ek?rel=0&start=3&enablejsapi=1&autoplay=1&loop=1&controls=0&modestbranding=1",background-opacity="0.7"]
+=== {feelpp} DSEL
+
+[.col2]
+--
+.Incompressoble Navier Stokes Equations
+[source.xx-small,cpp]
+----
+// test strain tensor
+auto def = 0.5*(grad(v)  + trans(grad(v)));
+// trial strain tensor
+auto deft = 0.5*(gradt(u) + trans(gradt(u)));
+// oseen
+form2( _test=Xh, _trial=Xh, _matrix=M) =
+  // automatic quadature
+  integrate( elements(Xh->mesh()),
+             alpha*trans(idt(u))*id(v)
+             + 2.0*nu*trace(trans(deft)*def)
+             + trans(gradt(u)*idv(beta))*id(v)
+             - div(v)*idt(p) + divt(u)*id(q) );
+----
+--
+[.col2.small,center]
+--
+.General Features
+* Advanced DSEL 
+* Automatic differentiation
+* Automatic quadrature
+* Automatic assembly
+* Automatic parallelism
+--

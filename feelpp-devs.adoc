@@ -1,7 +1,7 @@
 [.lightbg,background-image="Figures/feelpp/Gallery-feelpp-600x600.jpg",background-opacity="0.7"]
-=== {feelpp} Recent Developments
+=== {feelpp} Other features
 
-.Some recent features
+.Remeshing, distance to range, fast marching
 [.col2.xx-small]
 --
 [source.small,cpp]

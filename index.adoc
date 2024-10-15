@@ -47,6 +47,8 @@
 
 //include::feelpp-team.adoc[]
 
+include::cemosis.adoc[]
+
 include::feelpp.adoc[]
 
 include::feelpp-cfpdes.adoc[]
@@ -79,7 +81,10 @@ include::feelpp-hdg.adoc[]
 .Links
 * icon:code-branch[Github] link:https://github.com/feelpp/feelpp[github.com/feelpp/feelpp]
 * icon:book[Docs] link:https://docs.feelpp.org[docs.feelpp.org]
+* icon:cloud-download[Download] link:https://docs.feelpp.org/user/latest/install/index.html[Download]
 * icon:linkedin[LinkedIn] https://www.linkedin.com/company/feelpp[*@feelpp*]
+* icon:database[Database] link:https://zenodo.org/communities/feelpp[Zenodo - Feel++ Community]
+* icon:database[Database] link:https://girder.math.unistra.fr/[Girder - Feel++]
 --
 [pass]
 ++++

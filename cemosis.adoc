@@ -1,0 +1,23 @@
+== Cemosis
+
+[.lightbg.columns] 
+=== What is Cemosis ?
+
+.Overview
+- Created in 2013, led by Pr. Christophe Prud'homme 
+- Hosted by IRMA (Institute for Advanced Mathematical Research) - Unistra
+- Organized in 3 poles : 
+** Projects 
+** Training
+** Hardware and software
+- Labeled Unistra platform in 2021 by the new Cortecs network (cortecs.unistra.fr)
+
+
+[.lightbg,background-image="images/image.png",background-opacity="0.0"]
+=== Cemosis Software Eco-system
+
+//[.lightbg.columns]
+//--
+// //.{feelpp} Stack
+image::image.png[image,height=700]
+//--
