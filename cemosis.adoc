@@ -4,13 +4,14 @@
 === What is Cemosis ?
 
 .Overview
-- Created in 2013, led by Pr. Christophe Prud'homme 
+- Created in 2013, led by link:https://github.com/prudhomm[C Prud'homme]
 - Hosted by IRMA (Institute for Advanced Mathematical Research) - Unistra
 - Organized in 3 poles : 
-** Projects 
-** Training
-** Hardware and software
+** Projects link:https://github.com/prudhomm[C Prud'homme]
+** Training link:https://github.com/maslekm[M Maslek]
+** Hardware and software link:https://github.com/vincentchabannes[V Chabannes]
 - Labeled Unistra platform in 2021 by the new Cortecs network (cortecs.unistra.fr)
+- Currently(2024/10) 7 engineers
 
 
 [.lightbg,background-image="images/image.png",background-opacity="0.0"]
@@ -19,5 +20,5 @@
 //[.lightbg.columns]
 //--
 // //.{feelpp} Stack
-image::image.png[image,height=700]
-//--
+image::cemosis-sw-ecosystem.png[image,height=700]
+//-- 
