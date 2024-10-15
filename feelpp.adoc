@@ -76,7 +76,7 @@ image:Figures/feelpp/applications/blood-rheology.png[image,height=100]
 .Physics(High Field Magnets)
 image:Figures/feelpp/applications/hifimagnet.png[image,height=100]
 
-.Physics(Delectometry)
+.Physics(Deflectometry)
 image:Figures/feelpp/applications/holo3.png[image,height=100]
 
 //.image:Figures/feelpp/applications/gazomat.png[image,height=100]
@@ -95,6 +95,14 @@ image:Figures/feelpp/applications/OMVS-scheme-with-results.png[image,height=100]
 --
 
 include::feelpp-intro.adoc[]
+
+=== {feelpp} Continuous Integration/Delivery/Deployment
+
+image:feelpp-ci-workflow.png[background,size=contain]
+
+=== {feelpp} Continuous Benchmarking
+
+image:feelpp-cb-workflow.png[background,size=contain]
 
 //include::feelpp-features.adoc[]
 
